@@ -13,9 +13,8 @@ export default class ProductManager {
         const product = new Product(id, title, price, stock, category, photo);
         ProductManager.#all.push(product);
         resolve(product);
-      } catch (error) {
-        console.log(`error creating product with arguments:`, arguments);
-        reject(error);
+      } catch (error) {        
+        reject(`Error at ProductManager.create: ${error}`);
       }
     });
     return result;
@@ -34,8 +33,7 @@ export default class ProductManager {
           ? resolve(products)
           : reject("no products were found");
       } catch (error) {
-        console.log("error reading products");
-        reject(error);
+        reject(`Error at ProductManager.readAll: ${error}`);        
       }
     });
     return result;
@@ -47,8 +45,7 @@ export default class ProductManager {
         const product = ProductManager.#all.find((p) => p.id === id);
         product ? resolve(product) : reject(`product with id: ${id} not found`);
       } catch (error) {
-        console.log(`error when reading product with id: ${id}`);
-        reject(error);
+        reject(`Error at ProductManager.readId: ${error}`);
       }
     });
     return result;

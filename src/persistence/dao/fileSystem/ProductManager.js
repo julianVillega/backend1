@@ -7,10 +7,18 @@ export default class ProductManager {
   constructor() {}
 
   create(title, price, stock, category, photo) {
-    const id = this.#getId();
-    const product = new Product(id, title, price, stock, category, photo);
-    ProductManager.#all.push(product);
-    return product;
+    const result = new Promise((resolve, reject) => {
+      try {
+        const id = this.#getId();
+        const product = new Product(id, title, price, stock, category, photo);
+        ProductManager.#all.push(product);
+        resolve(product);
+      } catch (error) {
+        console.log(`error creating product with arguments:`, arguments);
+        reject(error);
+      }
+    });
+    return result;
   }
 
   #getId() {

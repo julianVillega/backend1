@@ -26,10 +26,32 @@ export default class ProductManager {
   }
 
   readAll() {
-    return ProductManager.#all;
+    const result = new Promise((resolve, reject) => {
+      try {
+        const products = ProductManager.#all;
+
+        products.length != 0
+          ? resolve(products)
+          : reject("no products were found");
+      } catch (error) {
+        console.log("error reading products");
+        reject(error);
+      }
+    });
+    return result;
   }
+
   readId(id) {
-    return ProductManager.#all.find((p) => p.id === id);
+    const result = new Promise((resolve, reject) => {
+      try {
+        const product = ProductManager.#all.find((p) => p.id === id);
+        product ? resolve(product) : reject(`product with id: ${id} not found`);
+      } catch (error) {
+        console.log(`error when reading product with id: ${id}`);
+        reject(error);
+      }
+    });
+    return result;
   }
 
   update({ id, ...rest }) {

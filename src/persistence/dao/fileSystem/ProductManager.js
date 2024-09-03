@@ -41,4 +41,14 @@ export default class ProductManager {
       console.error(`Error updating product: ${error}`);
     }
   }
+
+  destroy(id) {
+    const product = this.readId(id);
+    // delete the product if it exists and has not been deleted yet
+    if (product && !product.deletiondDate) {
+      product["deletiondDate"] = Date.now();
+      return true;
+    }
+    return false;
+  }
 }

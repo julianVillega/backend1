@@ -42,6 +42,15 @@ async function test() {
   } catch (error) {
     console.log(error);
   }
+
+  //h1: retrieve a product that was deleted
+  console.log("reading a product that was deleted")
+  try {
+    console.log("deleting product 3 :", await a.destroy(3))
+    console.log(await a.readId(3));
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 test();

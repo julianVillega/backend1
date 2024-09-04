@@ -42,7 +42,7 @@ export default class ProductManager {
   readId(id) {
     const result = new Promise((resolve, reject) => {
       try {
-        const product = ProductManager.#all.find((p) => p.id === id);
+        const product = ProductManager.#all.find((p) => p.id === id && !p.deletiondDate);
         product ? resolve(product) : reject(`product with id: ${id} not found`);
       } catch (error) {
         reject(`Error at ProductManager.readId: ${error}`);

@@ -4,7 +4,17 @@ export default class ProductManager {
   static #all = [];
   static #nextId = 0;
 
-  constructor() {}
+  constructor() {
+    ProductManager.#all.push(
+      new Product(this.#getId(), "default product 1", 100, 150, "category 1")
+    );
+    ProductManager.#all.push(
+      new Product(this.#getId(), "default product 2", 200, 200, "category 2")
+    );
+    ProductManager.#all.push(
+      new Product(this.#getId(), "default product 3", 300, 300, "category 3")
+    );
+  }
 
   create(title, price, stock, category, photo) {
     const result = new Promise((resolve, reject) => {
@@ -27,7 +37,7 @@ export default class ProductManager {
   readAll() {
     const result = new Promise((resolve, reject) => {
       try {
-        const products = ProductManager.#all.filter(p => !p.deletiondDate);
+        const products = ProductManager.#all.filter((p) => !p.deletiondDate);
 
         products.length != 0
           ? resolve(products)
@@ -42,7 +52,9 @@ export default class ProductManager {
   readId(id) {
     const result = new Promise((resolve, reject) => {
       try {
-        const product = ProductManager.#all.find((p) => p.id === id && !p.deletiondDate);
+        const product = ProductManager.#all.find(
+          (p) => p.id === id && !p.deletiondDate
+        );
         product ? resolve(product) : reject(`product with id: ${id} not found`);
       } catch (error) {
         reject(`Error at ProductManager.readId: ${error}`);

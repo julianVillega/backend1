@@ -13,7 +13,7 @@ export default class ProductManager {
         const product = new Product(id, title, price, stock, category, photo);
         ProductManager.#all.push(product);
         resolve(product);
-      } catch (error) {        
+      } catch (error) {
         reject(`Error at ProductManager.create: ${error}`);
       }
     });
@@ -33,7 +33,7 @@ export default class ProductManager {
           ? resolve(products)
           : reject("no products were found");
       } catch (error) {
-        reject(`Error at ProductManager.readAll: ${error}`);        
+        reject(`Error at ProductManager.readAll: ${error}`);
       }
     });
     return result;
@@ -51,21 +51,15 @@ export default class ProductManager {
     return result;
   }
 
-  update({ id, ...rest }) {
-    //find the product
-    const product = this.readId(id);
-    if (!product) {
-      console.error(`update error, no products with id: ${id} were found`);
-      return null;
-    }
+  async update({ id, ...rest }) {
     try {
-      //update the product fiels
+      const product = await this.readId(id);
       for (const [key, value] of Object.entries(rest)) {
         product[key] = value;
       }
       return product;
     } catch (error) {
-      console.error(`Error updating product: ${error}`);
+      throw new Error(`Error at ProductManager.update(): ${error}`);
     }
   }
 

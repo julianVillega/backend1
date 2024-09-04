@@ -63,13 +63,17 @@ export default class ProductManager {
     }
   }
 
-  destroy(id) {
-    const product = this.readId(id);
-    // delete the product if it exists and has not been deleted yet
-    if (product && !product.deletiondDate) {
-      product["deletiondDate"] = Date.now();
-      return true;
+  async destroy(id) {
+    try {
+      const product = await this.readId(id);
+      // delete the product if it has not been deleted yet
+      if (!product.deletiondDate) {
+        product["deletiondDate"] = Date.now();
+        return true;
+      }
+      return false;
+    } catch (error) {
+      throw new Error(`Error at ProdutManager.destroy: ${error}`);
     }
-    return false;
   }
 }

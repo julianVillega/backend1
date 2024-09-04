@@ -22,7 +22,9 @@ class UserManager {
       }
 
       //create the new user
-      UserManager.#all.push(new User(email, password, photo, role));
+      const user = new User(email, password, photo, role);
+      UserManager.#all.push(user);
+      return user;
     } catch (error) {
       console.log(`Error at UserManager.create(): ${error}`);
     }

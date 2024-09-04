@@ -27,7 +27,7 @@ export default class ProductManager {
   readAll() {
     const result = new Promise((resolve, reject) => {
       try {
-        const products = ProductManager.#all;
+        const products = ProductManager.#all.filter(p => !p.deletiondDate);
 
         products.length != 0
           ? resolve(products)

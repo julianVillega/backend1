@@ -51,6 +51,15 @@ async function test() {
   } catch (error) {
     console.log(error);
   }
+
+  //h1: retrieve all products when there are products that were deleted
+  try {
+    console.log("deleting product 2 :", await a.destroy(2))    
+    console.log("reading all products, 2 and 3 should not be returned");
+    console.log(await a.readAll());
+  } catch (error) {
+    console.log(error);
+  }  
 }
 
 test();

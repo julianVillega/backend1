@@ -1,6 +1,6 @@
 import { User } from "../../../models/User.js";
 
-class UserManager {
+export class UserManager {
   static #all = [];
 
   constructor() {

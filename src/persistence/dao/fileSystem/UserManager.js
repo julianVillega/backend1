@@ -39,10 +39,12 @@ export class UserManager {
   }
 
   readId(id) {
-    const result = new Promise((resolve, reject)=>{
+    const result = new Promise((resolve, reject) => {
       try {
-        const user = UserManager.#all.find(user => user.id === id && !user.deletionDate);
-        user ? resolve(user) : reject(`user with id: ${id} was not found`)
+        const user = UserManager.#all.find(
+          (user) => user.id === id && !user.deletionDate
+        );
+        user ? resolve(user) : reject(`user with id: ${id} was not found`);
       } catch (error) {
         reject(`Error at UserManager.readId(): ${error}`);
       }
@@ -61,5 +63,17 @@ export class UserManager {
     } catch (error) {
       throw new Error(`Error at UserManager.destroy: ${error}`);
     }
+  }
+
+  readAll() {
+    const result = new Promise((resolve, reject) => {
+      try {
+        const users = UserManager.#all.filter((user) => !user.deletionDate);
+        users.length != 0 ? resolve(users) : reject ("no useres were found");
+      } catch (error) {
+        reject(`Error at UserManager.readAll() : ${error}`);
+      }
+    });
+    return result;
   }
 }

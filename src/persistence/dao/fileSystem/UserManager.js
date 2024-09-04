@@ -37,4 +37,29 @@ export class UserManager {
     });
     return result;
   }
+
+  readId(id) {
+    const result = new Promise((resolve, reject)=>{
+      try {
+        const user = UserManager.#all.find(user => user.id === id && !user.deletionDate);
+        user ? resolve(user) : reject(`user with id: ${id} was not found`)
+      } catch (error) {
+        reject(`Error at UserManager.readId(): ${error}`);
+      }
+    });
+    return result;
+  }
+
+  async destroy(id) {
+    try {
+      const user = await this.readId(id);
+      if (!user.deletionDate) {
+        user["deletionDate"] = Date.now();
+        return true;
+      }
+      return false;
+    } catch (error) {
+      throw new Error(`Error at UserManager.destroy: ${error}`);
+    }
+  }
 }

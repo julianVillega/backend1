@@ -1,20 +1,14 @@
 import { Product } from "../../../models/Product.js";
 
 export default class ProductManager {
-  static #all = [];
-  static #nextId = 0;
+  static #all = [
+    new Product(0, "default product 1", 100, 150, "category 1"),
+    new Product(1, "default product 2", 200, 200, "category 2"),
+    new Product(2, "default product 3", 300, 300, "category 3"),
+  ];
+  static #nextId = 3;
 
-  constructor() {
-    ProductManager.#all.push(
-      new Product(this.#getId(), "default product 1", 100, 150, "category 1")
-    );
-    ProductManager.#all.push(
-      new Product(this.#getId(), "default product 2", 200, 200, "category 2")
-    );
-    ProductManager.#all.push(
-      new Product(this.#getId(), "default product 3", 300, 300, "category 3")
-    );
-  }
+  constructor() {}
 
   create(title, price, stock, category, photo) {
     const result = new Promise((resolve, reject) => {

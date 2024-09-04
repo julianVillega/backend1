@@ -1,5 +1,5 @@
 import crypto from "crypto";
-class User {
+export class User {
   constructor(
     email,
     password,

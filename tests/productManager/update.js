@@ -12,32 +12,37 @@ async function test() {
 
   //h3: testing update method
 
-  // //h1:update a product's category.
+  //h1:update a product's category.
   console.log("updating category for product with id 4");
   await a.update({ id: 4, category: "golosinas" });
   console.log(await a.readId(4));
 
-  // //h1:update a product's photo.
+  //h1:update a product's photo.
+  console.log("\n===============\n");
   console.log("updating photo for product with id 4");
   await a.update({ id: 4, photo: "https://random.imagecdn.app/150/150" });
   console.log(await a.readId(4));
 
-  // //h1:update a product's price.
+  //h1:update a product's price.
+  console.log("\n===============\n");
   console.log("updating price for product with id 4");
   await a.update({ id: 4, price: "1980" });
   console.log(await a.readId(4));
 
-  // //h1: update a product's title
+  //h1: update a product's title
+  console.log("\n===============\n");
   console.log("updating title for product with id 4");
   await a.update({ id: 4, title: "alfajores jorgito, PACK X 3 UNI" });
   console.log(await a.readId(4));
 
-  // //h1: update a product's stock
+  //h1: update a product's stock
+  console.log("\n===============\n");
   console.log("updating stock for product with id 4");
   await a.update({ id: 4, stock: 30 });
   console.log(await a.readId(4));
   
-  // //h1: update a non existing product
+  //h1: update a non existing product
+  console.log("\n===============\n");
   console.log("updating a non existing product with id 44");
   try {
     await a.update({ id: 44, stock: 30 });

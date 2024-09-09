@@ -13,7 +13,7 @@ async function test() {
     (await pm.readAll()).forEach((p) => products.push(p));
     // products.forEach((p) => console.log(p));
   } catch (error) {
-    console.log(error);
+    console.log("test console log: ",error);
   }
   const prod0Id = products[0].id;
 
@@ -22,7 +22,7 @@ async function test() {
     console.log(`reading product with id ${prod0Id}`);
     console.log(await pm.readId(prod0Id));
   } catch (error) {
-    console.log(error);
+    console.log("test console log: ",error);
   }
 
   // //h1: retrieve a non existent product
@@ -31,7 +31,7 @@ async function test() {
   try {
     console.log(await pm.readId(33));
   } catch (error) {
-    console.log(error);
+    console.log("test console log: ",error);
   }
 
   //h1: retrieve a product that was deleted
@@ -41,7 +41,7 @@ async function test() {
     console.log(`deleting product ${prod0Id}, deletion result :`, await pm.destroy(prod0Id));
     console.log(await pm.readId(prod0Id));
   } catch (error) {
-    console.log(error);
+    console.log("test console log: ",error);
   }
 }
 

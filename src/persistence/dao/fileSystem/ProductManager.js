@@ -11,17 +11,20 @@ export default class ProductManager {
   constructor() {}
 
   create(title, price, stock, category, photo) {
-    const result = new Promise((resolve, reject) => {
-      try {
+    try {
+      const result = new Promise((resolve, reject) => {
+        if(Array.from(arguments).some(arg => !arg)){
+          reject("missing fields");
+        }
         const id = this.#getId();
         const product = new Product(id, title, price, stock, category, photo);
         ProductManager.#all.push(product);
         resolve(product);
-      } catch (error) {
-        reject(`Error at ProductManager.create: ${error}`);
-      }
-    });
-    return result;
+      });
+      return result;
+    } catch (error) {
+      throw error;
+    }
   }
 
   #getId() {
@@ -29,57 +32,67 @@ export default class ProductManager {
   }
 
   readAll() {
-    const result = new Promise((resolve, reject) => {
-      try {
+    try {
+      const result = new Promise((resolve, reject) => {
         const products = ProductManager.#all.filter((p) => !p.deletiondDate);
 
         products.length != 0
           ? resolve(products)
           : reject("no products were found");
-      } catch (error) {
-        reject(`Error at ProductManager.readAll: ${error}`);
-      }
-    });
-    return result;
+      });
+      return result;
+    } catch (error) {
+      throw error;
+    }
   }
 
   readId(id) {
-    const result = new Promise((resolve, reject) => {
-      try {
+    try {
+      const result = new Promise((resolve, reject) => {
         const product = ProductManager.#all.find(
           (p) => p.id === id && !p.deletiondDate
         );
         product ? resolve(product) : reject(`product with id: ${id} not found`);
-      } catch (error) {
-        reject(`Error at ProductManager.readId: ${error}`);
-      }
-    });
-    return result;
-  }
-
-  async update({ id, ...rest }) {
-    try {
-      const product = await this.readId(id);
-      for (const [key, value] of Object.entries(rest)) {
-        product[key] = value;
-      }
-      return product;
+      });
+      return result;
     } catch (error) {
-      throw new Error(`Error at ProductManager.update(): ${error}`);
+      throw error;
     }
   }
 
-  async destroy(id) {
+  update({ id, ...rest }) {
     try {
-      const product = await this.readId(id);
-      // delete the product if it has not been deleted yet
-      if (!product.deletiondDate) {
-        product["deletiondDate"] = Date.now();
-        return true;
-      }
-      return false;
+      const result = new Promise(async (resolve, reject) => {
+        try {
+          const product = await this.readId(id);
+          for (const [key, value] of Object.entries(rest)) {
+            product[key] = value;
+          }
+          resolve(product);
+        } catch (error) {
+          reject(error);
+        }
+      });
+      return result;
     } catch (error) {
-      throw new Error(`Error at ProdutManager.destroy: ${error}`);
+      throw error;
+    }
+  }
+
+  destroy(id) {
+    try {
+      const result = new Promise(async (resolve, reject) => {
+        try {
+          const product = await this.readId(id);
+          product["deletiondDate"] = Date.now();
+          resolve(true);
+        } catch (error) {
+          reject(error);
+        }
+      });
+      return result;
+    } catch (error) {
+      throw error;
     }
   }
 }

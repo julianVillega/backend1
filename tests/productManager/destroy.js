@@ -1,38 +1,34 @@
-import ProductManager from "../../src/persistence/dao/fileSystem/ProductManager.js";
-
-//* create a new instance of ProductsManager
-const a = new ProductManager();
+import productManager from "../../src/persistence/dao/fileSystem/ProductManager.js";
 
 //? create a couple products
 async function test() {
-  await a.create("premezacla bizcochuelo de vanilla", 1800, 350, "almacen");
-  await a.create("premezacla bizcochuelo de chocolate", 1950, 350, "almacen");
-  await a.create("pan de mesa bimbo 360 Gr", 4000, 350, "almacen");
-  await a.create("alfajor jorgito x3 unidades", 2500, 350, "almacen");
-
+  await productManager.deleteAll();
+  const product =  await productManager.create("premezacla bizcochuelo de vanilla", 1800, 350, "almacen");
+  
   //h1: delete a product
-  console.log("deleting product with id 4");
+  console.log(`deleting product with id ${product.id}`);
   try {
-    console.log("deletion result is: ", await a.destroy(4));
-    console.log("product 4 is now: ", await a.readId(4));
+    console.log("deletion result is: ", await productManager.destroy(product.id));
+    console.log("reading product 4");
+    console.log(await productManager.readId(product.id));
   } catch (error) {
     console.log(error);
   }
 
   //h1: delete the same product twice
-  console.log("deleting product with id 4 again");
+  console.log("\n===============\n");
+  console.log(`deleting product with id ${product.id} again`);
   try {
-    console.log("deletion result is: ", await a.destroy(4));
-    console.log("product 4 is now: ", await a.readId(4));
+    console.log("deletion result is: ", await productManager.destroy(product.id));
   } catch (error) {
     console.log(error);
   }
 
   //h1: deleting a non existing product
-  console.log("deleting product with id 44");
+  console.log("\n===============\n");
+  console.log(`deleting product with id 44`);
   try {
-    console.log("deletion result is: ", await a.destroy(44));
-    console.log("product 4 is now: ", await a.readId(4));
+    console.log("deletion result is: ", await productManager.destroy(44));
   } catch (error) {
     console.log(error);
   }

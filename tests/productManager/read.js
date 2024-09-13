@@ -1,65 +1,48 @@
-import ProductManager from "../../src/persistence/dao/fileSystem/ProductManager.js";
-
-//* create a new instance of ProductsManager
-const a = new ProductManager();
+import productManager from "../../src/persistence/dao/fileSystem/ProductManager.js";
 
 //? create a couple products
 async function test() {
   //h3: test the reading methods:
-
-  //h1: reading all products when there are no products
-  console.log("reading all products when there are no products");
-  try {
-    console.log(await a.readAll());
-  } catch (error) {
-    console.log(error);
-  }
-
-  // creating products
-  console.log("creating products");
-
-  await a.create("premezacla bizcochuelo de vanilla", 1800, 350, "almacen");
-  await a.create("premezacla bizcochuelo de chocolate", 1950, 350, "almacen");
-  await a.create("pan de mesa bimbo 360 Gr", 4000, 350, "almacen");
-  await a.create("alfajor jorgito x3 unidades", 2500, 350, "almacen");
-
-  // //h1: retrieve all products
-  console.log("reading all products");
-  console.log(await a.readAll());
+  productManager.deleteAll();
+  const products = [];
+  let product =  await productManager.create("premezacla bizcochuelo de vanilla", 1800, 350, "almacen");
+  products.push(product);
+  product =  await productManager.create("harina", 980, 50, "almacen");
+  products.push(product);
+  product =  await productManager.create("sal gruesa", 1580, 20, "almacen");
+  products.push(product);
+  
+  const prod0Id = products[0].id;
 
   // //h1: retrieve a single product
-  console.log("reading product with id 3");
   try {
-    console.log(await a.readId(3));
+    console.log(`reading product with id ${prod0Id}`);
+    console.log(await productManager.readId(prod0Id));
   } catch (error) {
-    console.log(error);
+    console.log("test console log: ", error);
   }
 
   // //h1: retrieve a non existent product
+  console.log("\n===============\n");
   console.log("reading non existing product with id 33");
   try {
-    console.log(await a.readId(33));
+    console.log(await productManager.readId(33));
   } catch (error) {
-    console.log(error);
+    console.log("test console log: ", error);
   }
 
   //h1: retrieve a product that was deleted
-  console.log("reading a product that was deleted")
+  console.log("\n===============\n");
+  console.log("reading a product that was deleted");
   try {
-    console.log("deleting product 3 :", await a.destroy(3))
-    console.log(await a.readId(3));
+    console.log(
+      `deleting product ${prod0Id}, deletion result :`,
+      await productManager.destroy(prod0Id)
+    );
+    console.log(await productManager.readId(prod0Id));
   } catch (error) {
-    console.log(error);
+    console.log("test console log: ", error);
   }
-
-  //h1: retrieve all products when there are products that were deleted
-  try {
-    console.log("deleting product 2 :", await a.destroy(2))    
-    console.log("reading all products, 2 and 3 should not be returned");
-    console.log(await a.readAll());
-  } catch (error) {
-    console.log(error);
-  }  
 }
 
 test();

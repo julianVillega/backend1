@@ -1,5 +1,5 @@
-import express from "express";
-import productsManager from "./src/persistence/dao/fileSystem/ProductManager.js";
+import express, { response } from "express";
+import productsControler from "./src/controlers/products.controler.js";
 
 try {
   // 1. create the server
@@ -17,7 +17,13 @@ try {
   server.listen(port, ready);
 
   // 2. set up the routes
-  server.get("/", index);
+  server.get("/api", index);
+  // 2.1 products crud routes
+  server.post("/api/products", productsControler.create);
+  server.get("/api/products", productsControler.readAll);
+  server.get("/api/products/:id", productsControler.read);
+  server.put("/api/products/:id", productsControler.update);
+  server.delete("/api/products/:id", productsControler.delete);
 } catch (error) {
   console.log(error);
 }

@@ -1,79 +1,94 @@
 import { User } from "../../../models/User.js";
+import fs from "fs";
 
 export class UserManager {
-  static #all = [];
 
-  constructor() {
-    UserManager.#all.push(new User("user1@mail.com", "user1Password"));
-    UserManager.#all.push(new User("user2@mail.com", "user2Password"));
-    UserManager.#all.push(new User("user3@mail.com", "user3Password"));
+  constructor(path) {
+    this.path = path;
+    this.exists();
   }
 
-  create(email, password, photo, role) {
-    const result = new Promise((resolve, reject) => {
-      try {
-        // confirm the email is not empty
-        if (!email) {
-          reject(`No email was provided`);
-        }
-
-        // confirm the email is not used by othe users.
-        if (UserManager.#all.some((user) => user.email === email)) {
-          reject(`The email address ${email} is already taken`);
-        }
-
-        // confirm the password is not empty
-        if (!password) {
-          reject(`No password was provided`);
-        }
-
-        //create the new user
-        const user = new User(email, password, photo, role);
-        UserManager.#all.push(user);
-        resolve(user);
-      } catch (error) {
-        reject(`Error at UserManager.create(): ${error}`);
+  async exists() {
+    // creates the products file if it doesn't exists
+    try {
+      const fileExists = fs.existsSync(this.path);
+      if (!fileExists) {
+        await fs.promises.writeFile(this.path, JSON.stringify([]));
+        console.log("users file created");
+      } else {
+        console.log("users file already exists");
       }
-    });
-    return result;
+    } catch (error) {
+      throw error;
+    }
   }
 
-  readId(id) {
-    const result = new Promise((resolve, reject) => {
-      try {
-        const user = UserManager.#all.find(
-          (user) => user.id === id && !user.deletionDate
-        );
-        user ? resolve(user) : reject(`user with id: ${id} was not found`);
-      } catch (error) {
-        reject(`Error at UserManager.readId(): ${error}`);
+  async readAll(role) {
+    try {
+      const usersJson = await fs.promises.readFile(this.path, "utf-8");
+      const allUsers = JSON.parse(usersJson);
+      if (role) {
+        return allUsers.filter((user) => user.role === role);
       }
-    });
-    return result;
+      return allUsers;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async readId(id) {
+    try {
+      const usersJson = await fs.promises.readFile(this.path, "utf-8");
+      const allUsers = JSON.parse(usersJson);
+      return allUsers.filter((user) => user.id === id)[0];
+    } catch (error) {}
+  }
+
+  async create(email, password, photo, role) {
+    try {
+      // 1. create an instance of user
+      const newUser = new User(email, password, photo, role);
+
+      // 2. read all user from
+      const allUsers = await this.readAll();
+
+      // 3. add user
+      allUsers.push(newUser);
+
+      //4. write the file
+      await fs.promises.writeFile(this.path, JSON.stringify(allUsers, null, 2));
+      return newUser.id;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async update({ id, ...rest }) {
+    try {
+      const allUsers = await this.readAll();
+      const user = allUsers.find((user) => user.id === id);
+
+      for (const [key, value] of Object.entries(rest)) {
+        user[key] = value;
+      }
+
+      await fs.promises.writeFile(this.path, JSON.stringify(allUsers, null, 2));
+    } catch (error) {
+      throw error;
+    }
   }
 
   async destroy(id) {
     try {
-      const user = await this.readId(id);
-      if (!user.deletionDate) {
-        user["deletionDate"] = Date.now();
-        return true;
-      }
-      return false;
+      const allUsers = await this.readAll();
+      const otherUsers = allUsers.filter((user) => user.id != id);
+      await fs.promises.writeFile(this.path, JSON.stringify(otherUsers, null, 2));
     } catch (error) {
-      throw new Error(`Error at UserManager.destroy: ${error}`);
+      throw error;
     }
   }
-
-  readAll() {
-    const result = new Promise((resolve, reject) => {
-      try {
-        const users = UserManager.#all.filter((user) => !user.deletionDate);
-        users.length != 0 ? resolve(users) : reject ("no useres were found");
-      } catch (error) {
-        reject(`Error at UserManager.readAll() : ${error}`);
-      }
-    });
-    return result;
-  }
 }
+const userManager = new UserManager(
+  "./src/persistence/dao/fileSystem/users.json/"
+);
+export default userManager;

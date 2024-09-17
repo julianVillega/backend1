@@ -1,5 +1,4 @@
-import productsManager from "../../src/persistence/dao/fileSystem/ProductManager.js";
-
+import productsManager from "../../src/data/fs/ProductManager.js";
 
 //h3: testing create method
 async function test() {

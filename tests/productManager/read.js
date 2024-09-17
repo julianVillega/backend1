@@ -1,4 +1,4 @@
-import productManager from "../../src/persistence/dao/fileSystem/ProductManager.js";
+import productManager from "../../src/data/fs/ProductManager.js";
 
 //? create a couple products
 async function test() {

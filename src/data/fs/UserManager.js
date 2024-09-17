@@ -1,4 +1,4 @@
-import { User } from "../../../models/User.js";
+import { User } from "../../models/User.js";
 import fs from "fs";
 
 export class UserManager {
@@ -89,6 +89,6 @@ export class UserManager {
   }
 }
 const userManager = new UserManager(
-  "./src/persistence/dao/fileSystem/users.json/"
+  "./src/data/fs/files/users.json/"
 );
 export default userManager;

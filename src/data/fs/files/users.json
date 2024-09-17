@@ -1,0 +1,86 @@
+[
+  {
+    "id": "a61675f5620e623a6aa7ed9c",
+    "photo": null,
+    "email": "user1@mail.com",
+    "password": "user1Password",
+    "role": "user"
+  },
+  {
+    "id": "17a9a2631978e1a119fb5204",
+    "photo": null,
+    "email": "user1@mail.com",
+    "password": "user1Password",
+    "role": "admin"
+  },
+  {
+    "id": "0b920727c94a239218218a56",
+    "photo": null,
+    "email": "userToDestroy@mail.com",
+    "password": "password",
+    "role": "user"
+  },
+  {
+    "id": "94d7092f1c45feb544b114ac",
+    "photo": null,
+    "email": "user1@mail.com",
+    "password": "password",
+    "role": "admin"
+  },
+  {
+    "id": "46eb66b980ed07600f63cbc4",
+    "photo": null,
+    "email": "user2@mail.com",
+    "password": "password",
+    "role": "admin"
+  },
+  {
+    "id": "f723ed16790480c0d75b8e89",
+    "photo": null,
+    "email": "user3@mail.com",
+    "password": "password",
+    "role": "admin"
+  },
+  {
+    "id": "728d7e2825a9259e84d76eac",
+    "photo": null,
+    "email": "user1@mail.com",
+    "password": "password",
+    "role": "admin"
+  },
+  {
+    "id": "fa2183f62ef9ec5d20197e5b",
+    "photo": null,
+    "email": "user2@mail.com",
+    "password": "password",
+    "role": "admin"
+  },
+  {
+    "id": "7d7be3dc87ee960101623175",
+    "photo": null,
+    "email": "user3@mail.com",
+    "password": "password",
+    "role": "admin"
+  },
+  {
+    "id": "c1baaddb05cd26a1eb24469b",
+    "photo": null,
+    "email": "user1@mail.com",
+    "password": "password",
+    "role": "admin"
+  },
+  {
+    "id": "5dbafcce4e60dfc65e40f5da",
+    "photo": null,
+    "email": "user2@mail.com",
+    "password": "password",
+    "role": "user"
+  },
+  {
+    "id": "d71fe2fd4002250d6e15cf17",
+    "photo": null,
+    "email": "user3@mail.com",
+    "password": "password",
+    "role": "admin"
+  }
+]

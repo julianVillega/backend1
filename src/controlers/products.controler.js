@@ -1,4 +1,4 @@
-import productsManager from "../persistence/dao/fileSystem/ProductManager.js";
+import productsManager from "../data/fs/ProductManager.js";
 class ProductsControler {
   constructor() {}
 

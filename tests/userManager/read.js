@@ -1,4 +1,4 @@
-import userManager from "../../src/persistence/dao/fileSystem/UserManager.js";
+import userManager from "../../src/data/fs/UserManager.js";
 
 async function test() {
   try {

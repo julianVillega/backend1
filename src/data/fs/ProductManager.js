@@ -1,4 +1,4 @@
-import { Product } from "../../../models/Product.js";
+import { Product } from "../../models/Product.js";
 import fs from "fs";
 import crypto from "crypto";
 
@@ -151,6 +151,6 @@ class ProductManager {
 }
 
 const productsManager = new ProductManager(
-  "./src/persistence/dao/fileSystem/products.json/"
+  "./src/data/fs/files/products.json/"
 );
 export default productsManager;

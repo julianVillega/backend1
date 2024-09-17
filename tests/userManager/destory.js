@@ -1,4 +1,4 @@
-import userManager from "../../src/persistence/dao/fileSystem/UserManager.js";
+import userManager from "../../src/data/fs/UserManager.js";
 
 async function test() {
   try {
@@ -9,7 +9,7 @@ async function test() {
       "user"
     );
     const user = await userManager.readId(userId);
-    console.log(...user);
+    console.log(user);
     await userManager.destroy(userId);
   } catch (error) {
     console.log(error);

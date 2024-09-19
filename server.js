@@ -1,5 +1,6 @@
 import express, { response } from "express";
 import productsControler from "./src/controlers/products.controler.js";
+import router from "./src/routers/index.router.js";
 
 try {
   // 1. create the server
@@ -19,11 +20,7 @@ try {
   // 2. set up the routes
   server.get("/api", index);
   // 2.1 products crud routes
-  server.post("/api/products", productsControler.create);
-  server.get("/api/products", productsControler.readAll);
-  server.get("/api/products/:id", productsControler.read);
-  server.put("/api/products/:id", productsControler.update);
-  server.delete("/api/products/:id", productsControler.delete);
+  server.use(router)
 } catch (error) {
   console.log(error);
 }

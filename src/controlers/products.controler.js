@@ -4,7 +4,8 @@ class ProductsControler {
 
   async readAll(req, res) {
     try {
-      const products = await productsManager.readAll();
+      const {category} = req.query
+      const products = await productsManager.readAll(category);
       if (products.length > 0) {
         return res.status(200).json({
           message: `fetched ${products.length} products`,

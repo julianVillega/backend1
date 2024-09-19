@@ -1,10 +1,26 @@
 [
   {
-    "id": "6e28d195b6fda3e2c9b208c5",
-    "category": "golosinas",
-    "photo": "https://random.imagecdn.app/150/150",
-    "title": "alfajores jorgito, PACK X 3 UNI",
-    "price": "1980",
-    "stock": 30
+    "id": "7e7274d558c957a78a9ffb05",
+    "category": "tech",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "mouse logitech",
+    "price": "14500",
+    "stock": "15"
+  },
+  {
+    "id": "0fa98099a687c247ac0f9297",
+    "category": "smartphones",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "motorola razer 40",
+    "price": "145000",
+    "stock": "5"
+  },
+  {
+    "id": "7b900194bad1c137a827c986",
+    "category": "smartphones",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "samsung A 35",
+    "price": "145000",
+    "stock": "5"
   }
 ]

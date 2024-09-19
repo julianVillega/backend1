@@ -24,7 +24,7 @@ class ProductManager {
   }
 
   async deleteAll() {
-    // creates the products file if it doesn't exists
+    // deletes all products, by ovewriting the products.json file with an empty array
     try {
       const fileExists = fs.existsSync(this.path);
       if (fileExists) {
@@ -52,7 +52,7 @@ class ProductManager {
         photo
       );
 
-      // 3. update the products file
+      // 2. update the products file
       const allProducts = await this.readAll();
       allProducts.push(newProduct);
       await fs.promises.writeFile(
@@ -66,17 +66,20 @@ class ProductManager {
     }
   }
 
-  async readAll(category) {    
+  async readAll(category) {
     try {
       // 1. read all products from the products file
       const produtcsJson = await fs.promises.readFile(this.path, "utf-8");
       let parsedProdutcs = JSON.parse(produtcsJson);
 
+      // 2. filter products by category if one is provided
       if (category) {
         parsedProdutcs = parsedProdutcs.filter(
           (product) => product.category === category
         );
       }
+
+      //return the products
       return parsedProdutcs;
     } catch (error) {
       throw error;
@@ -120,11 +123,12 @@ class ProductManager {
       // 1. find the product
       let products = await this.readAll();
       const product = products.find((P) => P.id === id);
+
       // 2. remove the product if it exists
       if (!product) return false;
       products = products.filter((p) => p.id != id);
 
-      // 2. update the products json file
+      // 3. update the products json file
       await fs.promises.writeFile(this.path, JSON.stringify(products, null, 2));
       return true;
     } catch (error) {

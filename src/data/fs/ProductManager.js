@@ -48,12 +48,7 @@ class ProductManager {
   async create(title, price, stock, category, photo) {
     // creates a new product and saves it in the products file
     try {
-      // 1. validate fields
-      if (Array.from(arguments).some((arg) => !arg)) {
-        throw new Error("missing fields");
-      }
-
-      // 2. create the new product
+      // 1. create the new product
       const productId = crypto.randomBytes(12).toString("hex");
       const newProduct = new Product(
         productId,

@@ -3,13 +3,6 @@ import fs from "fs";
 import crypto from "crypto";
 
 class ProductManager {
-  static #all = [
-    new Product(0, "default product 1", 100, 150, "category 1"),
-    new Product(1, "default product 2", 200, 200, "category 2"),
-    new Product(2, "default product 3", 300, 300, "category 3"),
-  ];
-  static #nextId = 3;
-
   constructor(path) {
     this.path = path;
     this.exists();
@@ -73,12 +66,7 @@ class ProductManager {
     }
   }
 
-  #getId() {
-    return (ProductManager.#nextId += 1);
-  }
-
-  async readAll(category) {
-    // returns a list of all products in the products file, including deleted ones
+  async readAll(category) {    
     try {
       // 1. read all products from the products file
       const produtcsJson = await fs.promises.readFile(this.path, "utf-8");

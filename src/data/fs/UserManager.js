@@ -41,7 +41,9 @@ export class UserManager {
       const usersJson = await fs.promises.readFile(this.path, "utf-8");
       const allUsers = JSON.parse(usersJson);
       return allUsers.filter((user) => user.id === id)[0];
-    } catch (error) {}
+    } catch (error) {
+      throw error
+    }
   }
 
   async create(email, password, photo, role) {

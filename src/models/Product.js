@@ -4,8 +4,8 @@ export class Product {
     title,
     price,
     stock,
-    category = "none",
-    photo = "https://random.imagecdn.app/200/200"
+    category,
+    photo,
   ) {
     this.id = id;
     this.category = category;

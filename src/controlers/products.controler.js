@@ -2,9 +2,9 @@ import productsManager from "../data/fs/ProductManager.js";
 class ProductsControler {
   constructor() {}
 
-  async readAll(req, res) {
+  async readAll(req, res, next) {
     try {
-      const {category} = req.query
+      const { category } = req.query;
       const products = await productsManager.readAll(category);
       if (products.length > 0) {
         return res.status(200).json({
@@ -12,19 +12,16 @@ class ProductsControler {
           response: products,
         });
       } else {
-        return res.status(404).json({
-          message: `no products were found`,
-        });
+        const error = new Error(`no products were found`);
+        error.statusCode = 404;
+        throw error;
       }
     } catch (error) {
-      const { statusCode, message } = error;
-      return res
-        .status(statusCode || 500)
-        .json({ message: message || "FATAL ERROR" });
+      return next(error);
     }
   }
 
-  async read(req, res) {
+  async read(req, res, next) {
     try {
       const { id } = req.params;
       const product = await productsManager.readId(id);
@@ -34,19 +31,16 @@ class ProductsControler {
           response: product,
         });
       } else {
-        return res.status(404).json({
-          message: `product with id ${id} was not found`,
-        });
+        const error = new Error(`product with id ${id} was not found`);
+        error.statusCode = 404;
+        throw error;
       }
     } catch (error) {
-      const { statusCode, message } = error;
-      return res
-        .status(statusCode || 500)
-        .json({ message: message || "FATAL ERROR" });
+      return next(error);
     }
   }
 
-  async create(req, res) {
+  async create(req, res, next) {
     try {
       const { title, price, stock, category, photo } = req.body;
       const productId = await productsManager.create(
@@ -61,38 +55,31 @@ class ProductsControler {
         response: productId,
       });
     } catch (error) {
-      const { statusCode, message } = error;
-      return res
-        .status(statusCode || 500)
-        .json({ message: message || "FATAL ERROR" });
+      return next(error);
     }
   }
 
-  async update(req, res) {
+  async update(req, res, next) {
     try {
-      const {id} = req.params
+      const { id } = req.params;
       const data = req.body;
-      const product = await productsManager.update({id, ...data});
+      const product = await productsManager.update({ id, ...data });
       if (product) {
         return res.status(200).json({
           message: `updated product with id ${id}`,
           response: product,
         });
       } else {
-        return res.status(404).json({
-          message: `product with id ${id} was not found`,
-          response: product,
-        });
+        const error = new Error(`product with id ${id} was not found`);
+        error.statusCode = 404;
+        throw error;
       }
     } catch (error) {
-      const { statusCode, message } = error;
-      return res
-        .status(statusCode || 500)
-        .json({ message: message || "FATAL ERROR" });
+      return next(error);
     }
   }
 
-  async delete(req, res) {
+  async delete(req, res, next) {
     try {
       const { id } = req.params;
       const deletionResult = await productsManager.destroy(id);
@@ -102,16 +89,12 @@ class ProductsControler {
           response: deletionResult,
         });
       } else {
-        return res.status(404).json({
-          message: `product with id ${id} was not found`,
-          response: deletionResult,
-        });
+        const error = new Error(`product with id ${id} was not found`);
+        error.statusCode = 404;
+        throw error;
       }
     } catch (error) {
-      const { statusCode, message } = error;
-      return res
-        .status(statusCode || 500)
-        .json({ message: message || "FATAL ERROR" });
+      return next(error);
     }
   }
 }

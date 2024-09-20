@@ -1,7 +1,7 @@
-import Joi from "joi"; // Asegúrate de tener Joi instalado: npm install joi
+import Joi from "joi";
 
 function validator(req, res, next) {
-  // Definir el esquema de validación internamente
+  // Define the schema validation object
   const schema = Joi.object({
     title: Joi.string().required().messages({
       "string.empty": "Title is required",
@@ -27,18 +27,23 @@ function validator(req, res, next) {
     }),
   });
 
-  // Validar el req.body contra el esquema
+  // Validate request body using schema.
   const { error } = schema.validate(req.body, { abortEarly: false });
 
   if (error) {
-    // Mapear los mensajes de error y lanzarlos
+    // Create error and throw it
     const message = error.details.map((detail) => detail.message).join(", ");
     const newError = new Error(message);
     newError.statusCode = 400;
     return next(newError);
   }
 
-  next(); // Continuar si no hay errores
+  // Set category and photo with default values if necessary.
+  !req.body.category && (req.body.category = null)
+  !req.body.photo && (req.body.photo = "https://random.imagecdn.app/200/200")
+
+  // Call the next middleware
+  next();
 }
 
 export default validator;

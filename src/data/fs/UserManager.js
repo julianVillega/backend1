@@ -2,7 +2,6 @@ import { User } from "../../models/User.js";
 import fs from "fs";
 
 export class UserManager {
-
   constructor(path) {
     this.path = path;
     this.exists();
@@ -42,7 +41,7 @@ export class UserManager {
       const allUsers = JSON.parse(usersJson);
       return allUsers.filter((user) => user.id === id)[0];
     } catch (error) {
-      throw error
+      throw error;
     }
   }
 
@@ -59,7 +58,7 @@ export class UserManager {
 
       //4. write the file
       await fs.promises.writeFile(this.path, JSON.stringify(allUsers, null, 2));
-      return newUser.id;
+      return newUser;
     } catch (error) {
       throw error;
     }
@@ -69,12 +68,13 @@ export class UserManager {
     try {
       const allUsers = await this.readAll();
       const user = allUsers.find((user) => user.id === id);
-
+      if(!user) return null;
       for (const [key, value] of Object.entries(rest)) {
         user[key] = value;
       }
 
       await fs.promises.writeFile(this.path, JSON.stringify(allUsers, null, 2));
+      return user;
     } catch (error) {
       throw error;
     }
@@ -83,14 +83,19 @@ export class UserManager {
   async destroy(id) {
     try {
       const allUsers = await this.readAll();
-      const otherUsers = allUsers.filter((user) => user.id != id);
-      await fs.promises.writeFile(this.path, JSON.stringify(otherUsers, null, 2));
+      if(!allUsers.find(user=> user.id === id)){
+        return false;
+      }
+      const otherUsers = allUsers.filter((user) => user.id != id);      
+      await fs.promises.writeFile(
+        this.path,
+        JSON.stringify(otherUsers, null, 2)
+      );
+      return true;
     } catch (error) {
       throw error;
     }
   }
 }
-const userManager = new UserManager(
-  "./src/data/fs/files/users.json/"
-);
+const userManager = new UserManager("./src/data/fs/files/users.json/");
 export default userManager;

@@ -1,4 +1,4 @@
-import userManager from "../data/fs/UserManager";
+import userManager from "../data/fs/UserManager.js";
 class UserControler {
   constructor() {}
 
@@ -6,7 +6,7 @@ class UserControler {
     try {
       const { role } = req.query;
       const users = await userManager.readAll(role);
-      if (users.lenght > 0) {
+      if (users.length > 0) {
         res
           .status(200)
           .json({ message: `fetched ${users.lenght} users`, response: users });
@@ -22,7 +22,7 @@ class UserControler {
 
   async readId(req, res, next) {
     try {
-      const { id } = req.query;
+      const { id } = req.params;
       const user = await userManager.readId(id);
       if (user) {
         res
@@ -55,13 +55,18 @@ class UserControler {
 
   async update(req, res, next) {
     try {
-      const { userData } = req.body;
-      const user = await userManager.update(userData);
+      const { id } = req.params;
+      const userData = req.body;
+      const user = await userManager.update({ id, ...userData });
       if (user) {
         res.status(200).json({
           message: `updated user with id ${user.id}`,
           response: user,
         });
+      } else {
+        const error = new Error(`no users with id ${id} were found`);
+        error.statusCode = 404;
+        throw error;
       }
     } catch (error) {
       next(error);
@@ -73,7 +78,7 @@ class UserControler {
       const deletionResult = await userManager.destroy(id);
       if (deletionResult) {
         res.status(200).json({
-          message: `deleted user with id ${user.id}`,
+          message: `deleted user with id ${id}`,
           response: deletionResult,
         });
       } else {

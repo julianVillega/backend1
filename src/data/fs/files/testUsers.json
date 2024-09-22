@@ -18,13 +18,13 @@
     "photo": "https://random.imagecdn.app/200/200",
     "email": "user3@mail.com",
     "password": "user3pass",
-    "role": "0"
+    "role": "1"
   },
   {
     "id": "ec73dd681b17a7fc6c9ae679",
     "photo": "https://random.imagecdn.app/200/200",
     "email": "user4@mail.com",
     "password": "user4pass",
-    "role": "0"
+    "role": "1"
   }
 ]

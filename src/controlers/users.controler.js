@@ -45,7 +45,7 @@ class UserControler {
       if (user) {
         res.status(201).json({
           message: `created a new user with id ${user.id}`,
-          response: user,
+          response: user.id,
         });
       }
     } catch (error) {

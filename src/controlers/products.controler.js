@@ -43,7 +43,7 @@ class ProductsControler {
   async create(req, res, next) {
     try {
       const { title, price, stock, category, photo } = req.body;
-      const productId = await productsManager.create(
+      const product = await productsManager.create(
         title,
         price,
         stock,
@@ -51,8 +51,8 @@ class ProductsControler {
         photo
       );
       return res.status(201).json({
-        message: `created product with id ${productId.id}`,
-        response: productId,
+        message: `created product with id ${product.id}`,
+        response: product.id,
       });
     } catch (error) {
       return next(error);

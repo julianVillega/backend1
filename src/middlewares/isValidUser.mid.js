@@ -30,14 +30,14 @@ export default function isValidUser(req, res, next) {
       .uri({ scheme: ["http", "https"], allowRelative: false })
       .optional()
       .messages({
-        "string.uri": "Photo must be a valid URL",
+        "string.uri": "If present, photo must be a valid URL",
         "string.empty": "If present, photo can not be empty",
       }),
 
     role: Joi.string().alphanum().optional().messages({
-      "string.base": "Role must be a string",
-      "string.alphanum": "Role must be alphanumeric",
-      "string.empty": "If present role can not be empty",
+      "string.base": "If present, role must be a string",
+      "string.alphanum": "If present, role must be alphanumeric",
+      "string.empty": "If present, role can not be empty",
     }),
   });
 

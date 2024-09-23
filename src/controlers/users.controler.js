@@ -9,7 +9,7 @@ class UserControler {
       if (users.length > 0) {
         res
           .status(200)
-          .json({ message: `fetched ${users.lenght} users`, response: users });
+          .json({ message: `fetched ${users.length} users`, response: users });
       } else {
         const error = new Error("no users were found");
         error.statusCode = 404;

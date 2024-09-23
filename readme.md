@@ -1,11 +1,56 @@
 # Challenge 1
 
 ## Table of contents:
-  * [How to test this API]():
+  * [How to test this API](#how-to-test-this-api):
   * [Implemented Features](#features-implemented): A document containing the requirements for this challenge
   * [API Endpoints](#users-endpoints): A brief description of the different API endpoints implemented in this challenge.
   * [User Description](#user-description): A detailed description of the user's object fields.
   * [Product Description](#product-description): A detailed description of the product's object fields.
+
+## How to test this API:
+  
+  In order to test this API, follow the steps:
+  
+  1. Clone this git repository.
+      ```bash
+      git clone https://github.com/julianVillega/backend1.git
+      ```  
+  2. Position the terminal in the project's root directory.
+      ```bash
+      cd ./backend1
+      ```  
+  3. checkout to a new branch named challange1 by running this command:
+      ```bash
+      git checkout -b challange1
+      ```  
+  4. pull the changes from the remote repository, by running this command:
+      ```bash
+      git pull origin challange1
+      ```  
+  5. Install the necessary dependencies by running the command:
+      ```bash
+      npm i
+      ```
+  6. Start the server by running the command:  
+      ```bash
+      npm run dev
+      ```
+  7. Download the following postman collections of tests:    
+      * [user tests](https://drive.google.com/file/d/1vr-zKxRb2QyqSGPWsodxfGdH0URucRF-/view?usp=sharing)
+      * [products tests](https://drive.google.com/file/d/12P5KMiEcdmVPn3LbQD1jgFRmVWUmw7xE/view?usp=sharing)  
+  
+  8. Open Postman and import the downloaded collections.
+
+  9. Run individual tests or entire folders. If you plan on running entire folders of tests at once, make sure to add a delay of at least 500 milliseconds in between each test.
+
+  ***NOTE:*** Within the folder src/data/fs/files, you'll find the following files:
+  * products.json
+  * users.json
+  * testProducts.json
+  * testUsers.json
+  
+  All operations are performed over the users.json and products.json files. The testUsers.json and testProducts.json are there to facilitate the testing of the application. After running some tests, you can use the testUsers.json and testProducts.json files to restore the original contente of the users.json and products.json files.
+  
 
 ## Features implemented:
 

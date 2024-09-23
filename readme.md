@@ -1,8 +1,15 @@
 # Challange 1
 
-## Requirements implemented:
+## Table of contents:
+  * [How to test this API]():
+  * [Implemented Features](#features-implemented): A document containing the requirements for this challange
+  * [API Endpoints](#users-endpoints): A brief description of the different API endpoints implemented in this challange.
+  * [User Description](#user-description): A detailed description of the users object fields.
+  * [Product Description](#product-description): A detailed description of the users object fields.
 
-As required in the [this document](https://docs.google.com/presentation/d/1BVsH1ABIKOjct2PNRRzTXxCRApwMA7JAr9NZsXuCTsE/edit#slide=id.g120b44b0dae_0_1259), the following endpoints were implementd :
+## Features implemented:
+
+As required in the [this document](https://docs.google.com/presentation/d/1BVsH1ABIKOjct2PNRRzTXxCRApwMA7JAr9NZsXuCTsE/edit#slide=id.g120b44b0dae_0_1259), the following features were implementd :
 
 ## Users endpoints:
 <details>
@@ -395,3 +402,40 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
         ```
 </details>
 
+## User Description
+A User is an object contaning the following fields:
+```json
+{
+  "id": "1935c70b7ae4fb67b8247420",
+  "photo": "https://random.imagecdn.app/200/200",
+  "email": "user1@mail.com",
+  "password": "user1pass",
+  "role": "0"
+}
+```
+### Fields Description:
+* **id:** A hexadecimal, 12 bytes long number, automatically generated uppon user creation.
+* **email** : Is a required field and must be an email address with a .com TLD.
+* **password** : Is a required field, and must be an alphanumerical string, of 3 to 30 characters length
+* **photo** : An optional http or https url, if not provided uppon user creation, a default value of ´https://random.imagecdn.app/200/200´ is used.
+* **role**: An optional field, must be an alphanumerical string. If not provided uppon creation, the default value of "0" is used.
+
+## Product Description
+A Product is an object contaning the following fields:
+```json
+{
+    "id": "f61952421c9d7f2f3e84ca48",
+    "category": "Laptops",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Lenovo ThinkPad X1",
+    "price": "1600",
+    "stock": 7
+}
+```
+### Fields Description:
+* **id:** A hexadecimal, 12 bytes long number, automatically generated uppon creation.
+* **title**: A required field, must be a string.
+* **photo** : An optional http or https url, if not provided uppon creation, a default value of ´https://random.imagecdn.app/200/200´ is used.
+* **category**: An optional field, must be a string. If not provided uppon creation, the default value of null is used.
+* **stock**: An optional field, must be a positive integer. If not provided uppon creation, the default value of 1 is used.
+* **price**: An optional field, must be a positive integer. If not provided uppon creation, the default value of 1 is used.

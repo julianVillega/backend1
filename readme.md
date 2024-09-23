@@ -1,28 +1,28 @@
-# Challange 1
+# Challenge 1
 
 ## Table of contents:
   * [How to test this API]():
-  * [Implemented Features](#features-implemented): A document containing the requirements for this challange
-  * [API Endpoints](#users-endpoints): A brief description of the different API endpoints implemented in this challange.
-  * [User Description](#user-description): A detailed description of the users object fields.
-  * [Product Description](#product-description): A detailed description of the users object fields.
+  * [Implemented Features](#features-implemented): A document containing the requirements for this challenge
+  * [API Endpoints](#users-endpoints): A brief description of the different API endpoints implemented in this challenge.
+  * [User Description](#user-description): A detailed description of the user's object fields.
+  * [Product Description](#product-description): A detailed description of the product's object fields.
 
 ## Features implemented:
 
-As required in the [this document](https://docs.google.com/presentation/d/1BVsH1ABIKOjct2PNRRzTXxCRApwMA7JAr9NZsXuCTsE/edit#slide=id.g120b44b0dae_0_1259), the following features were implementd :
+As required in the [this document](https://docs.google.com/presentation/d/1BVsH1ABIKOjct2PNRRzTXxCRApwMA7JAr9NZsXuCTsE/edit#slide=id.g120b44b0dae_0_1259), the following features were implemented :
 
 ## Users endpoints:
 <details>
   <summary>POST/api/users </summary>
   
-  * **Purpouse:** Create a new user  
+  * **Purpose:** Create a new user  
   * **Query params:** None
   * **Url params:** None
   * **Request body:** Json string containing the user data
   * **Example:**
     * **Request:**
       * **Url:** /api/users
-      * **Htpp Method:** POST
+      * **Http Method:** POST
       * **Request body:**
         ```json
         {
@@ -46,7 +46,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
 <details>
   <summary>PUT/api/users/:Uid</summary>
   
-  * **Purpouse:** Update an existing user  
+  * **Purpose:** Update an existing user  
   * **Query params:** 
     * **Uid:** The id of the user to be updated
   * **Url params:** None
@@ -54,7 +54,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
   * **Example:**
     * **Request:**
       * **Url:** /api/users/1935c70b7ae4fb67b8247420
-      * **Htpp Method:** PUT
+      * **Http Method:** PUT
       * **Request body**:
         ```json
         {
@@ -84,7 +84,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
 <details>
   <summary> DELETE/api/users/:Uid </summary>
 
-  * **Purpouse:** Delete a user
+  * **Purpose:** Delete a user
   * **Query params:** 
   * **Uid:** The id of the user to delete
   * **Url params:** None
@@ -92,7 +92,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
   * **Example:**
     * **Request:**
       * **Url:** /api/users/1935c70b7ae4fb67b8247420
-      * **Htpp Method:** DELETE
+      * **Http Method:** DELETE
     * **Response:**
       * **Status Code:** 200
       * **Json:**
@@ -105,9 +105,9 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
 </details>
 
 <details>
-  <summary> GET/api/produtcs?role </summary>
+  <summary> GET/api/products?role </summary>
 
-  * **Purpouse:** Read users
+  * **Purpose:** Read users
   * **Query params:** 
     * **role:** Used to filter users by role
   * **Url params:** None
@@ -115,7 +115,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
   * **Example 1:**
     * **Request:**
       * **Url:** /api/users
-      * **Htpp Method:** GET  
+      * **Http Method:** GET  
     * **Response:**
       * **Status Code:** 200
       * **Json:**
@@ -146,7 +146,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
     * **Example 2:**
     * **Request:**
       * **Url:** /api/users?role=1
-      * **Htpp Method:** GET  
+      * **Http Method:** GET  
     * **Response:**
       * **Status Code:** 200
       * **Json:**
@@ -176,7 +176,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
 <details>
   <summary> GET/api/users/:Uid </summary>
 
-  * **Purpouse:** Read a user with a spcific id
+  * **Purpose:** Read a user with a specific id
   * **Query params:** None
   * **Url params:** 
     * **Uid:** The id of the user to read
@@ -184,7 +184,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
   * **Example:**
     * **Request:**
       * **Url:** /api/users/1935c70b7ae4fb67b8247420
-      * **Htpp Method:** GET
+      * **Http Method:** GET
     * **Response:**
       * **Status Code:** 200
       * **Json:**
@@ -208,14 +208,14 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
 <details>
   <summary> POST/api/products </summary>
 
-  * **Purpouse:** Create a new product
+  * **Purpose:** Create a new product
   * **Query params:** None
   * **Url params:** None
   * **Request body:** Json string containing the new product data
   * **Example:**
     * **Request:**
       * **Url:** /api/products
-      * **Htpp Method:** POST
+      * **Http Method:** POST
       * **Request body**:
         ```json
         {
@@ -240,15 +240,15 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
 <details>
   <summary> PUT/api/products/:pid </summary>
 
-  * **Purpouse:** Update an existing product
+  * **Purpose:** Update an existing product
   * **Query params:** None
   * **Url params:**
     * **pid:** The id of the product to update 
   * **Request body:** Json string containing the updated product data
   * **Example:**
     * **Request:**
-      * **Url:** /api/produtcs/d4bd215bffba484ac13dfbdd
-      * **Htpp Method:** PUT
+      * **Url:** /api/products/d4bd215bffba484ac13dfbdd
+      * **Http Method:** PUT
       * **Request body**:
         ```json
         {
@@ -280,7 +280,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
 <details>
   <summary> DELETE/api/products/:pid </summary>
 
-  * **Purpouse:** Delete an existing product
+  * **Purpose:** Delete an existing product
   * **Query params:** None
   * **Url params:**
     * **pid:** The id of the product to delete
@@ -288,7 +288,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
   * **Example:**
     * **Request:**
       * **Url:** /api/products/d4bd215bffba484ac13dfbdd:
-      * **Htpp Method:** DELETE
+      * **Http Method:** DELETE
     * **Response:**
       * **Status Code:** 200
       * **Json:**
@@ -303,7 +303,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
 <details>
   <summary> GET/api/products?category </summary>
 
-  * **Purpouse:** Read all produtcs
+  * **Purpose:** Read all products
   * **Query params:**
     * **category:** Used to filter products by category
   * **Url params:** None
@@ -311,7 +311,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
   * **Example 1:**
     * **Request:**
       * **Url:** /api/products
-      * **Htpp Method:** GET
+      * **Http Method:** GET
     * **Response:**
       * **Status Code:** 200
       * **Json:**
@@ -342,7 +342,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
   * **Example 2:**
     * **Request:**
       * **Url:** /api/products?category=Laptops
-      * **Htpp Method:** GET
+      * **Http Method:** GET
     * **Response:**
       * **Status Code:** 200
       * **Json:**
@@ -375,7 +375,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
 <details>
   <summary> GET/api/products/:pid </summary>
 
-  * **Purpouse:** Read a product with a specific id
+  * **Purpose:** Read a product with a specific id
   * **Query params:** None
   * **Url params:** 
     * **pid:** The id of the product to read.
@@ -383,7 +383,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
   * **Example:**
     * **Request:**
       * **Url:** /api/products/d4bd215bffba484ac13dfbdd
-      * **Htpp Method:** GET
+      * **Http Method:** GET
     * **Response:**
       * **Status Code:** 200
       * **Json:**
@@ -403,7 +403,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
 </details>
 
 ## User Description
-A User is an object contaning the following fields:
+A User is an object containing  the following fields:
 ```json
 {
   "id": "1935c70b7ae4fb67b8247420",
@@ -414,14 +414,14 @@ A User is an object contaning the following fields:
 }
 ```
 ### Fields Description:
-* **id:** A hexadecimal, 12 bytes long number, automatically generated uppon user creation.
+* **id:** A hexadecimal, 12 bytes long number, automatically generated upon user creation.
 * **email** : Is a required field and must be an email address with a .com TLD.
-* **password** : Is a required field, and must be an alphanumerical string, of 3 to 30 characters length
-* **photo** : An optional http or https url, if not provided uppon user creation, a default value of ´https://random.imagecdn.app/200/200´ is used.
-* **role**: An optional field, must be an alphanumerical string. If not provided uppon creation, the default value of "0" is used.
+* **password** : Is a required field, and must be an alphanumeric string, of 3 to 30 characters length
+* **photo** : An optional http or https url, if not provided upon user creation, a default value of ´https://random.imagecdn.app/200/200´ is used.
+* **role**: An optional field, must be an alphanumeric string. If not provided upon creation, the default value of "0" is used.
 
 ## Product Description
-A Product is an object contaning the following fields:
+A Product is an object containing  the following fields:
 ```json
 {
     "id": "f61952421c9d7f2f3e84ca48",
@@ -433,9 +433,9 @@ A Product is an object contaning the following fields:
 }
 ```
 ### Fields Description:
-* **id:** A hexadecimal, 12 bytes long number, automatically generated uppon creation.
+* **id:** A hexadecimal, 12 bytes long number, automatically generated upon creation.
 * **title**: A required field, must be a string.
-* **photo** : An optional http or https url, if not provided uppon creation, a default value of ´https://random.imagecdn.app/200/200´ is used.
-* **category**: An optional field, must be a string. If not provided uppon creation, the default value of null is used.
-* **stock**: An optional field, must be a positive integer. If not provided uppon creation, the default value of 1 is used.
-* **price**: An optional field, must be a positive integer. If not provided uppon creation, the default value of 1 is used.
+* **photo** : An optional http or https url, if not provided upon creation, a default value of ´https://random.imagecdn.app/200/200´ is used.
+* **category**: An optional field, must be a string. If not provided upon creation, the default value of null is used.
+* **stock**: An optional field, must be a positive integer. If not provided upon creation, the default value of 1 is used.
+* **price**: An optional field, must be a positive integer. If not provided upon creation, the default value of 1 is used.

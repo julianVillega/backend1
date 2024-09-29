@@ -1,0 +1,322 @@
+[
+  {
+    "id": "d4bd215bffba484ac13dfbdd",
+    "category": "SmartphonesUpdated5",
+    "photo": "https://Updated4",
+    "title": "Samsung A53 Updated5",
+    "price": "5",
+    "stock": 5
+  },
+  {
+    "id": "52b80920c47be774ffe4136e",
+    "category": "Smartphones",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "iPhone 14",
+    "price": "1200",
+    "stock": 10
+  },
+  {
+    "id": "eac91d6ce93d0df4e01ef5d5",
+    "category": "Smartphones",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "OnePlus 9 Pro",
+    "price": "900",
+    "stock": 15
+  },
+  {
+    "id": "08f4d46328496df69bb1b3c3",
+    "category": "Smartphones",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Google Pixel 7",
+    "price": "850",
+    "stock": 18
+  },
+  {
+    "id": "199f715c1b2d18e768950be5",
+    "category": "Smartphones",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Xiaomi Mi 11",
+    "price": "700",
+    "stock": 20
+  },
+  {
+    "id": "116a4eb7e130255be972d30d",
+    "category": "Laptops",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "MacBook Pro 16",
+    "price": "2400",
+    "stock": 5
+  },
+  {
+    "id": "c7d0ed6ea98517654f674cfe",
+    "category": "Laptops",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Dell XPS 13",
+    "price": "1500",
+    "stock": 12
+  },
+  {
+    "id": "ddbd76ef5668d257685ddb28",
+    "category": "Laptops",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "HP Spectre x360",
+    "price": "1300",
+    "stock": 8
+  },
+  {
+    "id": "f61952421c9d7f2f3e84ca48",
+    "category": "Laptops",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Lenovo ThinkPad X1",
+    "price": "1600",
+    "stock": 7
+  },
+  {
+    "id": "f075a309d5c8dd6af15026a8",
+    "category": "Laptops",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Asus ROG Strix",
+    "price": "1800",
+    "stock": 9
+  },
+  {
+    "id": "f6cd16d2fbfe7e512d76de00",
+    "category": "Tablets",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "iPad Pro",
+    "price": "1100",
+    "stock": 14
+  },
+  {
+    "id": "4e5c52eccebb5a5b2ecd8b73",
+    "category": "Tablets",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Samsung Galaxy Tab S7",
+    "price": "800",
+    "stock": 13
+  },
+  {
+    "id": "e72a70602d43b774687d10fd",
+    "category": "Tablets",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Microsoft Surface Pro 8",
+    "price": "900",
+    "stock": 10
+  },
+  {
+    "id": "212766b44ef21b45d69c1a01",
+    "category": "Tablets",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Lenovo Tab P11",
+    "price": "300",
+    "stock": 22
+  },
+  {
+    "id": "0c08fb3fe1bdc7d5757e7aaa",
+    "category": "Tablets",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Huawei MatePad 11",
+    "price": "600",
+    "stock": 16
+  },
+  {
+    "id": "51e2b4cb719965be25e3a4a9",
+    "category": "Cameras",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Canon EOS R5",
+    "price": "3800",
+    "stock": 4
+  },
+  {
+    "id": "0734da521f38cd92b75e4658",
+    "category": "Cameras",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Nikon Z6 II",
+    "price": "2000",
+    "stock": 6
+  },
+  {
+    "id": "7cfcf3896883dd331746d2c3",
+    "category": "Cameras",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Sony Alpha A7 III",
+    "price": "1800",
+    "stock": 7
+  },
+  {
+    "id": "72d7c393848e76521bc746cc",
+    "category": "Cameras",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Fujifilm X-T4",
+    "price": "1600",
+    "stock": 8
+  },
+  {
+    "id": "f88ecf7285c1c1b9519e148e",
+    "category": "Cameras",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Panasonic Lumix S1",
+    "price": "2500",
+    "stock": 5
+  },
+  {
+    "id": "f0de5588bc44c1fa5f94dbc9",
+    "category": "Headphones",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Sony WH-1000XM4",
+    "price": "350",
+    "stock": 18
+  },
+  {
+    "id": "5325fb92ebb12caa9079e230",
+    "category": "Headphones",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Bose QuietComfort 35 II",
+    "price": "300",
+    "stock": 14
+  },
+  {
+    "id": "9c3330c4e48d07d790a2782a",
+    "category": "Headphones",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Apple AirPods Pro",
+    "price": "250",
+    "stock": 20
+  },
+  {
+    "id": "8f3fbf5d9f3f0f6d7f42155e",
+    "category": "Headphones",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Sennheiser HD 660S",
+    "price": "500",
+    "stock": 8
+  },
+  {
+    "id": "a33f3019192d63cddaa97bf8",
+    "category": "Headphones",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Jabra Elite 85h",
+    "price": "200",
+    "stock": 25
+  },
+  {
+    "id": "2e704db0ad8ed2367993be8d",
+    "category": "Watches",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Apple Watch Series 7",
+    "price": "500",
+    "stock": 12
+  },
+  {
+    "id": "ffa74a6458c57d53fc5b773b",
+    "category": "Watches",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Samsung Galaxy Watch 4",
+    "price": "350",
+    "stock": 15
+  },
+  {
+    "id": "e0bcfcbf1adf74819ca69d3a",
+    "category": "Watches",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Garmin Forerunner 945",
+    "price": "600",
+    "stock": 10
+  },
+  {
+    "id": "b91931a81b0eb5f51cff54ab",
+    "category": "Watches",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Fitbit Versa 3",
+    "price": "230",
+    "stock": 20
+  },
+  {
+    "id": "f3c85bdcdf9fbaf3d9120c6a",
+    "category": "Watches",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Fossil Gen 5",
+    "price": "300",
+    "stock": 14
+  },
+  {
+    "id": "5fcb9f32e26e440b756263bc",
+    "category": "Monitors",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Dell UltraSharp 27",
+    "price": "600",
+    "stock": 9
+  },
+  {
+    "id": "85ecde084d9c5f68e773042e",
+    "category": "Monitors",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "LG 34'' UltraWide",
+    "price": "1000",
+    "stock": 5
+  },
+  {
+    "id": "18a92c899b318f5316a1d2ab",
+    "category": "Monitors",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Samsung Odyssey G9",
+    "price": "1400",
+    "stock": 6
+  },
+  {
+    "id": "1c4b936b56d199a7a4c09d29",
+    "category": "Monitors",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Acer Predator X34",
+    "price": "900",
+    "stock": 8
+  },
+  {
+    "id": "d0a93d278c0182edb48545ac",
+    "category": "Monitors",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "ASUS ProArt PA32UC",
+    "price": "1200",
+    "stock": 7
+  },
+  {
+    "id": "6c5857c2b1bd84f99209585b",
+    "category": "TVs",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Samsung QLED 65\"",
+    "price": "2200",
+    "stock": 6
+  },
+  {
+    "id": "726c3e73a7dcac172463849a",
+    "category": "TVs",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "LG OLED 55\"",
+    "price": "1800",
+    "stock": 9
+  },
+  {
+    "id": "c7fb122905cdf220c1775157",
+    "category": "TVs",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Sony Bravia 75\"",
+    "price": "3000",
+    "stock": 4
+  },
+  {
+    "id": "444147edaeffd79dd38a86c7",
+    "category": "TVs",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Vizio P-Series Quantum X",
+    "price": "1600",
+    "stock": 7
+  },
+  {
+    "id": "b37da9f20556078388c0474c",
+    "category": "TVs",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "TCL 6-Series 55\"",
+    "price": "900",
+    "stock": 12
+  }
+]

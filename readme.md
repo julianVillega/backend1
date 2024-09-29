@@ -150,7 +150,7 @@ As required in the [this document](https://docs.google.com/presentation/d/1BVsH1
 </details>
 
 <details>
-  <summary> GET/api/products?role </summary>
+  <summary> GET/api/users?role </summary>
 
   * **Purpose:** Read users
   * **Query params:** 

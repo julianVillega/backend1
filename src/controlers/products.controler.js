@@ -98,9 +98,10 @@ class ProductsControler {
     }
   }
 
-  showHome(req, res, next) {
+  async showHome(req, res, next) {
     try {
-      res.render("home.handlebars");
+      const products = await productsManager.readAll();
+      return res.render("home.handlebars", {products});
     } catch (error) {
       next(error);
     }

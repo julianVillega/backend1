@@ -1,3 +1,20 @@
 <div class="home">
-  <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint distinctio eligendi doloribus reiciendis porro nemo non suscipit sit quidem rem magnam aperiam, accusamus repellat nisi, sequi soluta! Alias, quibusdam reprehenderit?</p>
+  <section
+    class="home__products-section d-flex flex-wrap justify-content-around align-content-around"
+  >
+    {{#each products}}
+      <article class="home__product-article my-2">
+        <div class="card" style="width: 18rem;">
+          <img src={{this.photo}} class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">{{this.title}}</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Price: {{this.price}}</li>
+            </ul>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </article>
+    {{/each}}
+  </section>
 </div>

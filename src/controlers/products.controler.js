@@ -97,6 +97,14 @@ class ProductsControler {
       return next(error);
     }
   }
+
+  showHome(req, res, next) {
+    try {
+      res.render("home.handlebars");
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 const productsControler = new ProductsControler();

@@ -3,6 +3,8 @@ import router from "./src/routers/index.router.js";
 import morgan from "morgan";
 import errorHandler from "./src/middlewares/errorHandler.mid.js";
 import pathHandler from "./src/middlewares/pathHandler.mid.js";
+import { engine } from "express-handlebars";
+import __dirname from "./utils.js";
 
 try {
   // 1. create the server
@@ -27,6 +29,11 @@ try {
   server.use(router);
   server.use(errorHandler);
   server.use(pathHandler);
+
+  //handlebars
+  server.engine("handlebars", engine());
+  server.set("view engine", "handlebars");
+  server.set("views", __dirname + "/src/views");
 } catch (error) {
   console.log(error);
 }

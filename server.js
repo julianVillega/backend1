@@ -27,6 +27,10 @@ try {
   server.get("/api", index);
   // 2.1 products crud routes
   server.use(router);
+
+  // static folder
+  server.use("/public", express.static(__dirname + "/public"));
+
   server.use(errorHandler);
   server.use(pathHandler);
 

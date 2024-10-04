@@ -106,6 +106,15 @@ class ProductsControler {
       next(error);
     }
   }
+  
+  async showProductsAdminPannel(req, res, next) {
+    try {
+      const products = await productsManager.readAll();
+      return res.render("productsAdmin.handlebars", {products});
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 const productsControler = new ProductsControler();

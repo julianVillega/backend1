@@ -36,8 +36,115 @@
         id="price"
       />
     </div>
-    <button id="btn-sumbit" type="submit" class="btn btn-success">Create</button>
+    <button
+      id="btn-sumbit"
+      type="submit"
+      class="btn btn-success"
+    >Create</button>
     <button id="btn-cancel" type="reset" class="btn btn-danger">Cancel</button>
   </form>
+
+  <section
+    class="products-admin__products-section d-flex flex-wrap justify-content-around align-content-around"
+  >
+    {{#each products}}
+      <article class="products-admin__product-article my-2">
+        <div class="card" style="width: 18rem;">
+          <img src={{this.photo}} class="card-img-top" alt="..." />
+          <div class="card-body">
+            <h5 class="card-title">{{this.title}}</h5>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">Price: {{this.price}}</li>
+              <li class="list-group-item">Stock: {{this.stock}}</li>
+            </ul>
+            <div
+              class="btn-group"
+              role="group"
+              aria-label="Basic mixed styles example"
+            >
+              <button
+                type="button"
+                class="btn btn-update btn-info"
+                data-product-id={{this.id}}
+              >
+                Update
+              </button>
+              <button
+                type="button"
+                data-product-id={{this.id}}
+                class="btn-delete btn btn-danger"
+              >Delete</button>
+            </div>
+          </div>
+        </div>
+      </article>
+    {{/each}}
+  </section>
+  <div
+    class="modal fade"
+    id="updateModal"
+    tabindex="-1"
+    aria-labelledby="updateModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateModalLabel">Update Product</h5>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <form id="product-update-form">
+            {{! title }}
+            <div class="mb-3">
+              <label for="updated-title" class="form-label">Product title</label>
+              <input type="text" class="form-control" id="updated-title" required />
+            </div>
+            {{! category }}
+            <div class="mb-3">
+              <label for="updated-category" class="form-label">Category</label>
+              <input type="text" class="form-control" id="updated-category" />
+            </div>
+            {{! photo }}
+            <div class="mb-3">
+              <label for="updated-photo" class="form-label">Picture URL</label>
+              <input type="url" class="form-control" id="updated-photo" />
+            </div>
+            {{! stock }}
+            <div class="mb-3">
+              <label for="updated-stock" class="form-label">Stock</label>
+              <input type="number" step="1" class="form-control" id="updated-stock" />
+            </div>
+            {{! price }}
+            <div class="mb-3">
+              <label for="updated-price" class="form-label">Price</label>
+              <input
+                type="number"
+                min="0"
+                max="9999999"
+                class="form-control"
+                id="updated-price"
+              />
+            </div>
+            <button
+              id="btn-update"
+              type="submit"
+              class="btn btn-success"
+            >Update</button>
+            <button
+              id="btn-cancel-update"
+              type="reset"
+              class="btn btn-danger"
+            >Cancel</button>
+          </form>
+        </div>
+    </div>
+  </div>
+
 </div>
 <script src="/public/js/productsAdmin.js"></script>

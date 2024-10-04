@@ -1,11 +1,11 @@
 [
   {
     "id": "d4bd215bffba484ac13dfbdd",
-    "category": "SmartphonesUpdated5",
-    "photo": "https://Updated4",
-    "title": "Samsung A53 Updated5",
-    "price": "5",
-    "stock": 5
+    "category": "Smartphones",
+    "photo": "https://random.imagecdn.app/200/200",
+    "title": "Samsung A53",
+    "price": "300",
+    "stock": 25
   },
   {
     "id": "52b80920c47be774ffe4136e",
@@ -318,29 +318,5 @@
     "title": "TCL 6-Series 55\"",
     "price": "900",
     "stock": 12
-  },
-  {
-    "id": "16fb511950075291eee19230",
-    "category": null,
-    "photo": "https://random.imagecdn.app/200/200",
-    "title": "from front",
-    "price": 1,
-    "stock": 1
-  },
-  {
-    "id": "f30cd2c198cf3cad0cd67555",
-    "category": null,
-    "photo": "https://random.imagecdn.app/200/200",
-    "title": "asdasd",
-    "price": 1,
-    "stock": 1
-  },
-  {
-    "id": "2144bb0d6f9b599cc1ece1d2",
-    "category": null,
-    "photo": "https://random.imagecdn.app/200/200",
-    "title": "dasdasd",
-    "price": 1,
-    "stock": 1
   }
 ]

@@ -127,10 +127,45 @@ for (const btn of updateButtons) {
       }
     };
     const btnCancelUpdate = document.querySelector("#btn-cancel-update");
-      btnCancelUpdate.onclick = () =>{
-        updateForm.reset();
-        myModal.toggle();
-      }
+    btnCancelUpdate.onclick = () => {
+      updateForm.reset();
+      myModal.toggle();
+    };
     myModal.toggle();
+  };
+}
+
+//delete product
+const deleteButtons = document.querySelectorAll(".btn-delete");
+for (const btn of deleteButtons) {
+  btn.onclick = () => {
+    Swal.fire({
+      title: "Please confirm you want to delete the product",
+      showCancelButton: true,
+      cancelButtonText: "Cancel",
+      confirmButtonText: "Delete",
+      confirmButtonColor: "red",
+      cancelButtonColor: "grey",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch(
+            `/api/products/${btn.dataset.productId}`,
+            {
+              method: "DELETE",
+            }
+          );
+          if (response.status === 200) {
+            Swal.fire("Product deleted").then((result) => {
+              location.reload();
+            });
+          } else {
+            throw new Error();
+          }
+        } catch (error) {
+          Swal.fire("oops, something went wrong");
+        }
+      }
+    });
   };
 }

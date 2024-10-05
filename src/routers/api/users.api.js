@@ -7,6 +7,7 @@ const usersRouter = Router();
 
 usersRouter.get("/", userControler.readAll);
 usersRouter.get("/:id", userControler.readId);
+usersRouter.post("/login", userControler.login);
 usersRouter.post("/", isValidUser, setDefaultUserValues, userControler.create);
 usersRouter.put("/:id", isValidUser, userControler.update);
 usersRouter.delete("/:id", userControler.delete);

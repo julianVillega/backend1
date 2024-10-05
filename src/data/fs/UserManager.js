@@ -68,7 +68,7 @@ export class UserManager {
     try {
       const allUsers = await this.readAll();
       const user = allUsers.find((user) => user.id === id);
-      if(!user) return null;
+      if (!user) return null;
       for (const [key, value] of Object.entries(rest)) {
         user[key] = value;
       }
@@ -83,15 +83,31 @@ export class UserManager {
   async destroy(id) {
     try {
       const allUsers = await this.readAll();
-      if(!allUsers.find(user=> user.id === id)){
+      if (!allUsers.find((user) => user.id === id)) {
         return false;
       }
-      const otherUsers = allUsers.filter((user) => user.id != id);      
+      const otherUsers = allUsers.filter((user) => user.id != id);
       await fs.promises.writeFile(
         this.path,
         JSON.stringify(otherUsers, null, 2)
       );
       return true;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async login(email, password) {
+    try {
+      const users = await this.readAll();
+      const user = users.find(
+        (u) => u.email === email && u.password === password
+      );
+      if (user) {
+        this.update({ ...user, isOnline: true });
+        return user.id;
+      }
+      return null;
     } catch (error) {
       throw error;
     }

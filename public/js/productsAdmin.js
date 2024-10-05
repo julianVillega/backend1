@@ -47,11 +47,17 @@ form.onsubmit = async (e) => {
         headers: { "content-Type": "application/json" },
         body: JSON.stringify(data),
       });
+      if (response.status == 201) {
+        Swal.fire("Product Created !").then(() => location.reload());
+      } else {
+        const json = await response.json();
+        throw new Error(json.message);
+      }
+    } catch (error) {
+      Swal.fire(error.message);
+    } finally {
       form.reset();
       toggleForm();
-      alert("Product created !");
-    } catch (error) {
-      console.log(error);
     }
   }
 };

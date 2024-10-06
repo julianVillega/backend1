@@ -112,6 +112,15 @@ export class UserManager {
       throw error;
     }
   }
+
+  async isAuthenticated(userId){
+    try {
+      const user = await this.readId(userId);
+      return user?.isOnline || false ;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 const userManager = new UserManager("./src/data/fs/files/users.json/");
 export default userManager;

@@ -8,9 +8,32 @@
 
 # How to test challenge 2
   To test the features implemented in this challenge:
-  1. clone the repository, install all dependencies and run the server as instructed in: [How to test this api](#how-to-test-this-api)
-  2. open a browser.
-  3. Use the nav bar to navigate and test the different views
+  1. Clone this git repository.
+      ```bash
+      git clone https://github.com/julianVillega/backend1.git
+      ```  
+  2. Position the terminal in the project's root directory.
+      ```bash
+      cd ./backend1
+      ```  
+  3. checkout to a new branch named challange2secondtry by running this command:
+      ```bash
+      git checkout -b challange2secondtry
+      ```  
+  4. pull the changes from the remote repository, by running this command:
+      ```bash
+      git pull origin challange2secondtry
+      ```  
+  5. Install the necessary dependencies by running the command:
+      ```bash
+      npm i
+      ```
+  6. Start the server by running the command:  
+      ```bash
+      npm run dev
+      ```
+  7. open a browser.
+  8. Use the nav bar to navigate and test the different views
 
   You can use the following credentials to log in: 
   * **email:** user1@mail.com

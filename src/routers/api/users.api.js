@@ -6,6 +6,7 @@ import setDefaultUserValues from "../../middlewares/setUserDefaultValues.mid.js"
 const usersRouter = Router();
 
 usersRouter.get("/", userControler.readAll);
+usersRouter.get("/logout/:id", userControler.logout);
 usersRouter.get("/:id", userControler.readId);
 usersRouter.post("/login", userControler.login);
 usersRouter.post("/", isValidUser, setDefaultUserValues, userControler.create);

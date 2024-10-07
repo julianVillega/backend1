@@ -113,6 +113,24 @@ class UserControler {
     }
   }
 
+  async logout(req, res, next) {
+    try {
+      console.log("loging out!!!");
+      
+      const { id } = req.params;
+      const logutSuccessfull = await userManager.logout(id);
+      if(logutSuccessfull){
+        return res.status(200).json({message:"logout successfull", response:true});
+      }else{
+        const error = new Error();
+        error.statusCode = 404;
+        error.message = "User not found, logout failed"
+      }
+    } catch (error) {
+      next(error);
+    }
+  }
+
   showLogin(req, res, next) {
     try {
       res.render("login.handlebars", {});

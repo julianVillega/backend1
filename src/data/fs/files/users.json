@@ -5,7 +5,7 @@
     "email": "user1@mail.com",
     "password": "user1pass",
     "role": "0",
-    "isOnline": true
+    "isOnline": false
   },
   {
     "id": "dbeb5fa4cdae91d8ba68121c",

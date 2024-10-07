@@ -113,10 +113,24 @@ export class UserManager {
     }
   }
 
-  async isAuthenticated(userId){
+  async logout(userId) {
     try {
       const user = await this.readId(userId);
-      return user?.isOnline || false ;
+      if (user) {
+        user.isOnline = false;
+        await this.update(user);
+        return true;
+      }
+      return false;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async isAuthenticated(userId) {
+    try {
+      const user = await this.readId(userId);
+      return user?.isOnline || false;
     } catch (error) {
       throw error;
     }

@@ -7,6 +7,10 @@ const profileNavLink = document.querySelector("#profile-nav-link");
 // products admin nav item and link
 const productsAdminNavItem = document.querySelector("#products-admin-nav-item");
 const productsAdminNavLink = document.querySelector("#products-admin-nav-link");
+
+// register nav item
+const registerNavItem = document.querySelector("#register-nav-item");
+
 // login nav item and link
 const loginNavItem = document.querySelector("#login-nav-item");
 // logout nav item and link
@@ -21,7 +25,6 @@ if (userId) {
   productsAdminNavLink.setAttribute("href", `/products/admin/${userId}`);
   productsAdminNavItem.classList.toggle("d-none");
   
-  // logoutNavLink.setAttribute("href", `/api/users/logout/${userId}`);
   logoutNavItem.classList.toggle("d-none");
 
   //configure logout button
@@ -38,5 +41,6 @@ if (userId) {
 
 }else{
   //show login link
+  registerNavItem.classList.toggle("d-none");
   loginNavItem.classList.toggle("d-none");
 }

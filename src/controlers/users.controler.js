@@ -116,15 +116,17 @@ class UserControler {
   async logout(req, res, next) {
     try {
       console.log("loging out!!!");
-      
+
       const { id } = req.params;
       const logutSuccessfull = await userManager.logout(id);
-      if(logutSuccessfull){
-        return res.status(200).json({message:"logout successfull", response:true});
-      }else{
+      if (logutSuccessfull) {
+        return res
+          .status(200)
+          .json({ message: "logout successfull", response: true });
+      } else {
         const error = new Error();
         error.statusCode = 404;
-        error.message = "User not found, logout failed"
+        error.message = "User not found, logout failed";
       }
     } catch (error) {
       next(error);
@@ -134,6 +136,14 @@ class UserControler {
   showLogin(req, res, next) {
     try {
       res.render("login.handlebars", {});
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  showRegister(req, res, next) {
+    try {
+      res.render("register");
     } catch (error) {
       next(error);
     }

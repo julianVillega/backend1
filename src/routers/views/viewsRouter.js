@@ -5,7 +5,7 @@ import isAuthenticated from "../../middlewares/isAuthenticated.mid.js";
 
 const viewRouter = Router()
 viewRouter.get('/users/login', userControler.showLogin);
-viewRouter.get('/users/:userId', userControler.showUser);
-// viewRouter.get('/', productsControler.showHome);
-// viewRouter.get('/products/admin/:userId', productsControler.showProductsAdminPannel);
+viewRouter.get('/users/:userId', isAuthenticated ,userControler.showUser);
+viewRouter.get('/', productsControler.showHome);
+viewRouter.get('/products/admin/:userId', isAuthenticated ,productsControler.showProductsAdminPannel);
 export default viewRouter;

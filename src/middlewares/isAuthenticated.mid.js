@@ -10,7 +10,7 @@ export default async function isAuthenticated(req, res, next) {
       next();
     } else {
       console.log("IS NOT AUTH");
-      return res.redirect(301, "/users/login");
+      return res.redirect(302, "/users/login");
     }
   } catch (error) {
     next(error);

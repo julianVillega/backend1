@@ -16,6 +16,7 @@ loginForm.onsubmit = async (e) => {
     if (response.status === 200) {
       const json = await response.json();
       const userId = json.response;
+      sessionStorage.setItem("userId", userId);
       window.location.replace(`/users/${userId}`);
     } else {
       Swal.fire("invalid email or password");

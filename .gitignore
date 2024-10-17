@@ -2,3 +2,4 @@
 node_modules
 not_in_git
 .vscode
+.env

@@ -4,27 +4,31 @@
     "photo": "https://random.imagecdn.app/200/200",
     "email": "user1@mail.com",
     "password": "user1pass",
-    "role": "0"
+    "role": "0",
+    "isOnline": false
   },
   {
     "id": "dbeb5fa4cdae91d8ba68121c",
     "photo": "https://random.imagecdn.app/200/200",
     "email": "user2@mail.com",
     "password": "user2pass",
-    "role": "0"
+    "role": "0",
+    "isOnline": false
   },
   {
     "id": "82e96d149a10d80f2ae18bd8",
     "photo": "https://random.imagecdn.app/200/200",
     "email": "user3@mail.com",
     "password": "user3pass",
-    "role": "1"
+    "role": "1",
+    "isOnline": false
   },
   {
     "id": "ec73dd681b17a7fc6c9ae679",
     "photo": "https://random.imagecdn.app/200/200",
     "email": "user4@mail.com",
     "password": "user4pass",
-    "role": "1"
+    "role": "1",
+    "isOnline": false
   }
 ]

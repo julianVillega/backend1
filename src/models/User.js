@@ -11,5 +11,6 @@ export class User {
     this.email = email;
     this.password = password;
     this.role = role;
+    this.isOnline = false;
   }
 }

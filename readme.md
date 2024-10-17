@@ -1,3 +1,78 @@
+
+# Challenge 2
+
+## Table of contents:
+  * [How to test challenge 2](#how-to-test-challenge-2)
+  * [Features implemented in this challenge](#features-implemented-in-challenge-2)
+  * [About Authentication](#about-authentication)
+
+
+# How to test challenge 2
+  To test the features implemented in this challenge:
+  1. Clone this git repository.
+      ```bash
+      git clone https://github.com/julianVillega/backend1.git
+      ```  
+  2. Position the terminal in the project's root directory.
+      ```bash
+      cd ./backend1
+      ```  
+  3. checkout to a new branch named challange2secondtry by running this command:
+      ```bash
+      git checkout -b challange2secondtry
+      ```  
+  4. pull the changes from the remote repository, by running this command:
+      ```bash
+      git pull origin challange2secondtry
+      ```  
+  5. Install the necessary dependencies by running the command:
+      ```bash
+      npm i
+      ```
+  6. Start the server by running the command:  
+      ```bash
+      npm run dev
+      ```
+  7. open a browser.
+  8. Use the nav bar to navigate and test the different views
+
+  You can use the following credentials to log in: 
+  * **email:** user1@mail.com
+  * **password:** user1pass
+
+  ### DISCLAIMER:
+  Shutting down the backend application will not logout any users.
+
+## Features implemented in challenge 2
+  This challenge consisted of creating a frontend to consume the Rest Api created in the previous challenge.
+  The views created include:
+  * **Login:**
+    *  A view containing a simple login form, upon a successful authentication the user is redirected to the user profile view.
+    * **URL:** /users/login
+  * **Register:**
+    * A simple registration form that allows users to create an account. Upon successful account creation, the user is redirected to the login page.
+    * **URL:** /users/register
+  * **Home**
+    * A basic homepage listing every product on the ecomerce. Viewing this page does not require an account.
+  * **User Profile:**
+    * A page displaying the user account info, including email, role an photo. To access this page the user must be loged in.
+    * **URL:** /users/:userId
+  * **Product Admin:**
+    * A page for creating, modifying and deleting products. Access to this account requires being loged in.
+    * **URL:** /products/admin/:userId
+
+## About authentication:
+
+For this challenge authentication was implemented in an oversimplified way, ***for demonstration purposes only***:
+
+Every user has, in addition to their regular information, (email, password, role, photo) a boolean variable that indicates whether the user is online or not. Logging in sets this variable to true, and logging out sets it to false.
+When a user successfully logs in, the server responds with the user's id. The client stores said id and sends it along with the subsequent requests as a url parameter.
+When accessing urls that require authentication, a user id must be provided as a url parameter. If that user is not online, a redirection to the login page is returned.
+
+It is very clear that this is not secure by any means, but it's good enough to demonstrate how the interaction between the client and the server works.
+
+A better alternative would be to generate a session token upon user log in, and assign said token to the user logging in. Additionally, this token could have an expiration date.
+
 # Challenge 1
 
 ## Table of contents:

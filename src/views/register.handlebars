@@ -1,0 +1,39 @@
+<div class="register d-flex flex-column align-items-center my-5">
+  <h2>Create Your Account !</h2>
+  <form id="register-form" class="w-25">
+    <div class="mb-3">
+      <label for="email" class="form-label">Email address</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="yourEmail@xyz.com"
+        required
+      />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        required
+        placeholder="********"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="password-copy" class="form-label">Confirm the password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password-copy"
+        required
+        placeholder="********"
+      />
+    </div>
+    <div class="d-flex">
+      <button type="submit" class="btn btn-primary ms-auto">Create</button>
+    </div>
+  </form>
+  <script src="/public/js/register.js"></script>
+</div>

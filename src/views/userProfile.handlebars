@@ -1,0 +1,23 @@
+<div class="user-profile">
+  <div class="container w-75">
+    <div class="row my-5 ">
+      <h1>Your Profile</h1>
+    </div>
+    <div class="row">
+      <div class="col-6 align-items-center d-flex flex-column">
+        <div class="mb-5">
+          <h2>Email:</h2>
+          <span>{{user.email}}</span>
+        </div>
+        <div class="my-5">
+          <h2>User Role:</h2>
+          <span>{{user.role}}</span>
+        </div>
+      </div>
+      <div class="col-6 align-items-center d-flex flex-column">
+        <h2>Profile Picture:</h2>
+        <img src={{user.photo}} />
+      </div>
+    </div>
+  </div>
+</div>

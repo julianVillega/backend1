@@ -1,5 +1,47 @@
 import MongoCrudManager from "./MongoCrudManager.js";
 import User from "../models/user.model.js";
 
-const UserManager = new MongoCrudManager(User);
-export default UserManager;
+class UserManager extends MongoCrudManager {
+  constructor() {
+    super(User);
+  }
+  async login(email, password) {
+    try {
+      const user = await this.model.findOne({
+        $and: [{ email: email }, { password: password }],
+      });
+      if (user) {
+        await this.update(user.id, { isOnline: true });
+        return user.id;
+      }
+      return null;
+    } catch (error) {
+      console.log("error at manager");
+      throw error;
+    }
+  }
+
+  async logout(userId) {
+    try {
+      const user = await this.read(userId);
+      if (user) {
+        await this.update(user.id, { isOnline: false });
+        return true;
+      }
+      return false;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async isAuthenticated(userId) {
+    try {
+      const user = await this.read(userId);
+      return user?.isOnline || false;
+    } catch (error) {
+      throw error;
+    }
+  }
+}
+
+export default new UserManager(User);

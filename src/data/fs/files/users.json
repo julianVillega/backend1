@@ -4,7 +4,7 @@
     "photo": "https://random.imagecdn.app/200/200",
     "email": "user1@mail.com",
     "password": "user1pass",
-    "role": "0",
+    "role": "user",
     "isOnline": false
   },
   {
@@ -12,7 +12,7 @@
     "photo": "https://random.imagecdn.app/200/200",
     "email": "user2@mail.com",
     "password": "user2pass",
-    "role": "0",
+    "role": "user",
     "isOnline": false
   },
   {
@@ -20,7 +20,7 @@
     "photo": "https://random.imagecdn.app/200/200",
     "email": "user3@mail.com",
     "password": "user3pass",
-    "role": "1",
+    "role": "admin",
     "isOnline": false
   },
   {
@@ -28,7 +28,7 @@
     "photo": "https://random.imagecdn.app/200/200",
     "email": "user4@mail.com",
     "password": "user4pass",
-    "role": "1",
+    "role": "admin",
     "isOnline": false
   }
 ]

@@ -35,7 +35,7 @@ class MongoCrudManager {
   async update(id, data) {
     try {
       const options = { new: true };
-      const instance = this.model.findOneAndUpdate({ _id: id }, data, options);
+      const instance = await this.model.findOneAndUpdate({ _id: id }, data, options);
       return instance;
     } catch (error) {
       throw error;
@@ -44,7 +44,7 @@ class MongoCrudManager {
 
   async delete(id) {
     try {
-      const instance = this.model.findOneAndDelete({ _id: id });
+      const instance = await this.model.findOneAndDelete({ _id: id });
       return instance;
     } catch (error) {
       throw error;

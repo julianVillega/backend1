@@ -1,6 +1,7 @@
 // products router
 import { Router } from "express";
-import productsControler from "../../controlers/products.controler.js";
+// import productsControler from "../../controlers/products.controler.js";
+import productsControler from "../../controlers/mongo/products.controler.js";
 import isValidProduct from "../../middlewares/isValidProduct.mid.js";
 import setDefaultValues from "../../middlewares/setProductDefaultValues.mid.js";
 

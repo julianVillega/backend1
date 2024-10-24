@@ -13,5 +13,8 @@ const schema = new Schema({
   },
 });
 
+schema.pre("find", function(){this.populate("user_id","-_id -password -__v")});
+schema.pre("find", function(){this.populate("product_id","-_id -__v")});
+
 const Cart = model(collection, schema);
 export default Cart;

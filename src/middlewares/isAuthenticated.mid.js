@@ -1,4 +1,5 @@
-import userManager from "../data/fs/UserManager.js";
+// import userManager from "../data/fs/UserManager.js";
+import userManager from "../data/mongo/managers/usersManager.js"
 
 export default async function isAuthenticated(req, res, next) {
   try {

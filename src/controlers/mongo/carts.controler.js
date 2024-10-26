@@ -4,17 +4,18 @@ import cartsManager from "../../data/mongo/managers/cartsManager.js";
 class CartsContrler extends MongoCrudControler {
   constructor() {
     super(cartsManager, "cart");
-    this.read = this.read.bind(this)
+    this.read = this.read.bind(this);
+    this.showCart = this.showCart.bind(this);
   }
 
   async read(req, res, next) {
     try {
       const { id } = req.params;
       const instance = await this.manager.read(id);
-      if (instance[0]) {
+      if (instance) {
         return res.status(200).json({
           message: `fetched ${this.modelName} from user with id ${id} `,
-          response: instance[0],
+          response: instance,
         });
       } else {
         const error = new Error(
@@ -28,6 +29,15 @@ class CartsContrler extends MongoCrudControler {
     }
   }
 
+  async showCart(req, res, next) {
+    try {
+      const { id } = req.params;
+      const cart = await this.manager.read(id);
+      return res.render("cart.handlebars", { cart });
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 const cartsControler = new CartsContrler();

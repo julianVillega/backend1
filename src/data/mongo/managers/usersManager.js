@@ -25,7 +25,7 @@ class UserManager extends MongoCrudManager {
     try {
       const user = await this.read(userId);
       if (user) {
-        await this.update(user.id, { isOnline: false });
+        await this.update(userId, { isOnline: false });
         return true;
       }
       return false;

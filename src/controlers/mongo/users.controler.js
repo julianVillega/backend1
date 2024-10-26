@@ -7,6 +7,8 @@ class UsersControler extends MongoCrudControler {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.showUser = this.showUser.bind(this);
+    this.showLogin = this.showLogin.bind(this);
+    this.showRegister = this.showRegister.bind(this);
   }
 
   async login(req, res, next) {

@@ -6,8 +6,9 @@ class UsersControler extends MongoCrudControler {
     super(UsersManager, "user");
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
+    this.showUser = this.showUser.bind(this);
   }
-  
+
   async login(req, res, next) {
     try {
       const { email, password } = req.body;
@@ -41,6 +42,32 @@ class UsersControler extends MongoCrudControler {
         error.statusCode = 404;
         error.message = "User not found, logout failed";
       }
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async showUser(req, res, next) {
+    try {
+      const { userId } = req.params;
+      const user = await this.manager.read(userId);
+      res.render("userProfile.handlebars", { user });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  showLogin(req, res, next) {
+    try {
+      res.render("login.handlebars", {});
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  showRegister(req, res, next) {
+    try {
+      res.render("register");
     } catch (error) {
       next(error);
     }

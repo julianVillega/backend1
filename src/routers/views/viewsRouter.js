@@ -10,6 +10,7 @@ viewRouter.get("/users/login", userControler.showLogin);
 viewRouter.get("/users/register", userControler.showRegister);
 viewRouter.get("/users/:userId", isAuthenticated, userControler.showUser);
 viewRouter.get("/", productsControler.showHome);
+viewRouter.get("/products/:pid", productsControler.showProductDetail);
 // viewRouter.get(
 //   "/products/admin/:userId",
 //   isAuthenticated,

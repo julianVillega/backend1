@@ -16,7 +16,7 @@ class MongoCrudManager {
 
   async read(id) {
     try {
-      const instance = await this.model.findOne({ _id: new Types.ObjectId(id)});
+      const instance = await this.model.findOne({ _id: new Types.ObjectId(id)}).lean();
       return instance;
     } catch (error) {
       throw error;

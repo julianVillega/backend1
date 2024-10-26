@@ -11,7 +11,10 @@ class ProductsController extends MongoCrudControler {
   async readAll(req, res, next) {
     try {
       const { category, limit, page } = req.query;
-      const instances = await this.manager.readAll(category ? { category }:{}, {limit, page});
+      const instances = await this.manager.readAll(
+        category ? { category } : {},
+        { limit, page }
+      );
       if (instances.docs.length > 0) {
         return res.status(200).json({
           message: `fetched ${instances.docs.length} ${this.modelName}s`,
@@ -31,12 +34,32 @@ class ProductsController extends MongoCrudControler {
     try {
       const { category, limit, page } = req.query;
       const products = await this.manager.readAll(
-        category ? { category }:{},
-        { page, limit }
+        category ? { category } : {},
+        { page, limit: limit || 5 }
       );
-      // const products = PaginatedProducts.docs;
-      console.log(category, limit, page);
-      return res.render("home.handlebars", { products });
+      const pagesLinkArray = Array.from(
+        { length: products.totalPages },
+        (_, i) => {
+          return {
+            link: `http://localhost:8000/?page=${i + 1}&limit=${limit}${
+              category ? `&category=${category}` : ""
+            }`,
+            pageNumber: i + 1,
+          };
+        }
+      );
+      const prevPageLink = products.hasPrevPage
+        ? `http://localhost:8000/?page=${products.prevPage}&limit=${limit}${
+            category ? `&category=${category}` : ""
+          }`
+        : "";
+      const nextPageLink = products.hasNextPage
+        ? `http://localhost:8000/?page=${products.nextPage}&limit=${limit}${
+            category ? `&category=${category}` : ""
+          }`
+        : "";
+
+      return res.render("home.handlebars", { products, pagesLinkArray, prevPageLink, nextPageLink });
     } catch (error) {
       next(error);
     }

@@ -47,10 +47,10 @@
   <section
     class="products-admin__products-section d-flex flex-wrap justify-content-around align-content-around"
   >
-    {{#each products}}
+    {{#each products.docs}}
       <article class="products-admin__product-article my-2">
         <div class="card" style="width: 18rem;">
-          <img src={{this.photo}} class="card-img-top" alt="..." />
+          <img src="{{this.photo}}" class="card-img-top" alt="..." />
           <div class="card-body">
             <h5 class="card-title">{{this.title}}</h5>
             <ul class="list-group list-group-flush">

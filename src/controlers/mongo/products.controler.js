@@ -7,6 +7,7 @@ class ProductsController extends MongoCrudControler {
     this.readAll = this.readAll.bind(this);
     this.showHome = this.showHome.bind(this);
     this.showProductDetail = this.showProductDetail.bind(this);
+    this.showProductsAdminPannel = this.showProductsAdminPannel.bind(this);
   }
 
   async readAll(req, res, next) {
@@ -77,6 +78,15 @@ class ProductsController extends MongoCrudControler {
       const product = await this.manager.read(pid);
       product.id = product._id.toString();
       return res.render("productDetail.handlebars", { product });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async showProductsAdminPannel(req, res, next) {
+    try {
+      const products = await this.manager.readAll();
+      return res.render("productsAdmin.handlebars", { products });
     } catch (error) {
       next(error);
     }

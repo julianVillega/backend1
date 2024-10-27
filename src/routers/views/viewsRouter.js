@@ -17,9 +17,9 @@ viewRouter.get("/users/:userId", isAuthenticated, userControler.showUser);
 viewRouter.get("/", productsControler.showHome);
 viewRouter.get("/products/:pid", productsControler.showProductDetail);
 viewRouter.get("/cart/:id", cartsControler.showCart);
-// viewRouter.get(
-//   "/products/admin/:userId",
-//   isAuthenticated,
-//   productsControler.showProductsAdminPannel
-// );
+viewRouter.get(
+  "/products/admin/:userId",
+  isAuthenticated,
+  productsControler.showProductsAdminPannel
+);
 export default viewRouter;

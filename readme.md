@@ -38,8 +38,10 @@
   * **password:** aasdasd222d
   Or you can create your own user
 
-  ### DISCLAIMER:
+  ### DISCLAIMERS:
   Shutting down the backend application will not logout any users.
+
+  To view the user cart you must type the url manually since there is no navigation link to the user cart, sorry about that. The link is as follows http://localhost:8000/cart/theUserId
 
   # Features implemented in challenge 3
   

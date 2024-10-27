@@ -1,4 +1,58 @@
 
+# Challenge 3
+  * [How to test challenge 3](#how-to-test-challenge-3)
+  * [Features implemented in this challenge](#features-implemented-in-challenge-3)
+  # How to test challenge 3
+  To test the features implemented in this challenge:
+  1. Clone this git repository.
+      ```bash
+      git clone https://github.com/julianVillega/backend1.git
+      ```  
+  2. Position the terminal in the project's root directory.
+      ```bash
+      cd ./backend1
+      ```  
+  3. checkout to a new branch named challenge3 by running this command:
+      ```bash
+      git checkout -b challenge3
+      ```  
+  4. pull the changes from the remote repository, by running this command:
+      ```bash
+      git pull origin challenge3
+      ```  
+  5. Install the necessary dependencies by running the command:
+      ```bash
+      npm i
+      ```
+  6. create a .env file within the backend1 folder.
+  within this file copy the credentials provided by me.    
+  7. Start the server by running the command:  
+      ```bash
+      npm run dev
+      ```
+  8. open a browser.
+  9. Use the nav bar to navigate and test the different views
+
+  You can use the following credentials to log in: 
+  * **email:** michael@mail.com
+  * **password:** aasdasd222d
+  Or you can create your own user
+
+  ### DISCLAIMER:
+  Shutting down the backend application will not logout any users.
+
+  # Features implemented in challenge 3
+  
+  ## Switched form File System persistence to MongoDB
+  In this challenge, all controllers and managers have been redone except this time using MongoDB to implement the persistence logic.
+  To do this I chose to create generic classes for the managers and controller, these generic classes implement basic crud operations. This allowed me to reuse this generic code, while still being able to extend those generic classes and override the inherited behavior when needed. In order to be able to achieve this with the controllers, an extra step was needed due to the fact that the controllers method's are passed as callback functions in the routers. When a method is passed as a callback, the binding between the function been passed and the object it came from is lost. An implication of this is that the "this" property becomes undefined within the function. To solve this issue, within the controller's constructor I forcefully bind each method to "this".
+
+  ## Implemented users carts
+  Another major improvement was the addition of the user's cart view. In this view the user can see all products in the cart. This required the implementation of the cart's api logic as well as the frontend changes to allow the user to add products to the cart. Note that as of this release, it is not yet possible to modify the quantities of each products once they have been added to the cart.
+
+  ## Pagination for products views
+  In the previous release, both the home and products admin view, displayed a huge list containing all products in the e-commerce. For this release, pagination has been added to both views, allowing for a better user experience. As part of this it, now it's also possible to filter products by category, however due to time constrains there is not category filter in the UI. To filter products by category, a category query string parameter must be specified manually.
+
 # Challenge 2
 
 ## Table of contents:

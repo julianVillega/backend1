@@ -79,6 +79,26 @@
         </div>
       </article>
     {{/each}}
+    <div class="d-flex justify-content-center">
+    <ul class="pagination">
+      {{#if products.hasPrevPage}}
+        <li class="page-item"><a class="page-link" href="{{{prevPageLink}}}">Previous</a></li>
+      {{else}}
+        <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+      {{/if}}
+      {{#each pagesLinkArray}}
+        <li class="page-item"><a
+            class="page-link"
+            href="{{{this.link}}}"
+          >{{this.pageNumber}}</a></li>
+      {{/each}}
+      {{#if products.hasNextPage}}
+        <li class="page-item"><a class="page-link" href="{{{nextPageLink}}}">Next</a></li>
+      {{else}}
+        <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+      {{/if}}
+    </ul>
+  </div>
   </section>
   <div
     class="modal fade"
@@ -145,6 +165,5 @@
         </div>
     </div>
   </div>
-
 </div>
 <script src="/public/js/productsAdmin.js"></script>

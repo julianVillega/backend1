@@ -5,12 +5,17 @@ import errorHandler from "./src/middlewares/errorHandler.mid.js";
 import pathHandler from "./src/middlewares/pathHandler.mid.js";
 import { engine } from "express-handlebars";
 import __dirname from "./utils.js";
+import "dotenv/config.js";
+import dbConnection from "./src/utils/db.js";
 
 try {
   // 1. create the server
   const server = express();
   const port = 8000;
-  const ready = () => console.log(`server ready on port ${port}`);
+  const ready = () => {
+    console.log(`server ready on port ${port}`);
+    dbConnection();
+  };
 
   // 1.2. config the server to use url params and query params
   server.use(express.urlencoded({ extended: true }));

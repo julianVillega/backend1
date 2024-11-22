@@ -1,44 +1,15 @@
 import Joi from "joi";
+import { UserValidations as uv } from "../utils/users.validations.js";
 
 export default function isValidUser(req, res, next) {
-  //define the schema validation
   const schema = Joi.object({
-    email: Joi.string()
-      .required()
-      .email({
-        minDomainSegments: 2,
-        tlds: { allow: ["com"] },
-      })
-      .messages({
-        "any.required": "Email is required",
-        "string.email":
-          "Email must follow the pattern xyz@domain.com, only emails ending in .com are supported",
-        "string.empty": "Email cannot be empty",
-      }),
+    email: uv.isValidEmail(),
 
-    password: Joi.string()
-      .required()
-      .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
-      .messages({
-        "any.required": "Password is required",
-        "string.pattern.base":
-          "Password must be a 3 to 30 characters alphanumeric string",
-        "string.empty": "Password can not be empty",
-      }),
+    password: uv.isValidPassword(),
 
-    photo: Joi.string()
-      .uri({ scheme: ["http", "https"], allowRelative: false })
-      .optional()
-      .messages({
-        "string.uri": "If present, photo must be a valid URL",
-        "string.empty": "If present, photo can not be empty",
-      }),
+    photo: uv.isValidPhoto(),
 
-    role: Joi.string().alphanum().optional().messages({
-      "string.base": "If present, role must be a string",
-      "string.alphanum": "If present, role must be alphanumeric",
-      "string.empty": "If present, role can not be empty",
-    }),
+    role: uv.isValidRole()
   });
 
   // Validate request body using schema.

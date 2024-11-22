@@ -1,5 +1,5 @@
 import userManager from "../data/fs/UserManager.js";
-class UserControler {
+class UserController {
   constructor() {}
 
   async readAll(req, res, next) {
@@ -101,7 +101,7 @@ class UserControler {
         console.log(userId);
         return res
           .status(200)
-          .json({ message: "login sucessfull", response: userId });
+          .json({ message: "login successful", response: userId });
       } else {
         const error = new Error();
         error.statusCode = 401;
@@ -115,14 +115,12 @@ class UserControler {
 
   async logout(req, res, next) {
     try {
-      console.log("loging out!!!");
-
       const { id } = req.params;
-      const logutSuccessfull = await userManager.logout(id);
-      if (logutSuccessfull) {
+      const logoutSuccessful = await userManager.logout(id);
+      if (logoutSuccessful) {
         return res
           .status(200)
-          .json({ message: "logout successfull", response: true });
+          .json({ message: "logout successful", response: true });
       } else {
         const error = new Error();
         error.statusCode = 404;
@@ -160,5 +158,5 @@ class UserControler {
   }
 }
 
-const userControler = new UserControler();
-export default userControler;
+const userController = new UserController();
+export default userController;

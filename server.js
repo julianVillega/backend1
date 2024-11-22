@@ -20,7 +20,7 @@ try {
   // 1.2. config the server to use url params and query params
   server.use(express.urlencoded({ extended: true }));
 
-  // 1.3. confg the server to use json as the body on requirements
+  // 1.3. config the server to use json as the body on requirements
   server.use(express.json());
 
   server.use(morgan("dev"));
@@ -49,7 +49,7 @@ try {
 
 function index(req, res) {
   try {
-    return res.status(200).json({ message: "API CONECTED" });
+    return res.status(200).json({ message: "API CONNECTED" });
   } catch (error) {
     const { statusCode, message } = error;
     return res

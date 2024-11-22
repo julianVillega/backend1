@@ -1,4 +1,4 @@
-class MongoCrudControler {
+class MongoCrudController {
   constructor(manager, modelName) {
     this.manager = manager;
     this.modelName = modelName;
@@ -108,4 +108,4 @@ class MongoCrudControler {
   }
 }
 
-export default MongoCrudControler;
+export default MongoCrudController;

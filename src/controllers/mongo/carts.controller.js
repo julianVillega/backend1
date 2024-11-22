@@ -1,7 +1,7 @@
-import MongoCrudControler from "./mongoCRUD.controler.js";
+import MongoCrudController from "./mongoCRUD.controller.js";
 import cartsManager from "../../data/mongo/managers/cartsManager.js";
 
-class CartsContrler extends MongoCrudControler {
+class CartsController extends MongoCrudController {
   constructor() {
     super(cartsManager, "cart");
     this.read = this.read.bind(this);
@@ -40,5 +40,5 @@ class CartsContrler extends MongoCrudControler {
   }
 }
 
-const cartsControler = new CartsContrler();
-export default cartsControler;
+const cartsController = new CartsController();
+export default cartsController;

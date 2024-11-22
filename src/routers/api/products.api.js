@@ -1,16 +1,20 @@
 // products router
 import { Router } from "express";
-// import productsControler from "../../controlers/products.controler.js";
-import productsControler from "../../controlers/mongo/products.controler.js";
+// import productsController from "../../controllers/products.controller.js";
+import productsController from "../../controllers/mongo/products.controller.js";
 import isValidProduct from "../../middlewares/isValidProduct.mid.js";
 import setDefaultValues from "../../middlewares/setProductDefaultValues.mid.js";
 
 const productsRouter = Router();
 
-productsRouter.get("/", productsControler.readAll);
-productsRouter.get("/:id", productsControler.read);
-productsRouter.post("/", isValidProduct, setDefaultValues, productsControler.create);
-productsRouter.put("/:id", isValidProduct, productsControler.update);
-productsRouter.delete("/:id", productsControler.delete);
-
+productsRouter.get("/", productsController.readAll);
+productsRouter.get("/:id", productsController.read);
+productsRouter.post(
+  "/",
+  isValidProduct,
+  setDefaultValues,
+  productsController.create
+);
+productsRouter.put("/:id", isValidProduct, productsController.update);
+productsRouter.delete("/:id", productsController.delete);
 export default productsRouter;

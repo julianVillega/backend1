@@ -1,7 +1,7 @@
-import MongoCrudControler from "./mongoCRUD.controler.js";
+import MongoCrudController from "./mongoCRUD.controller.js";
 import UsersManager from "../../data/mongo/managers/usersManager.js";
 
-class UsersControler extends MongoCrudControler {
+class UsersController extends MongoCrudController {
   constructor() {
     super(UsersManager, "user");
     this.login = this.login.bind(this);
@@ -76,4 +76,4 @@ class UsersControler extends MongoCrudControler {
   }
 }
 
-export default new UsersControler();
+export default new UsersController();

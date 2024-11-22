@@ -1,13 +1,13 @@
 import productsManager from "../../data/mongo/managers/productsManager.js";
-import MongoCrudControler from "./mongoCRUD.controler.js";
+import MongoCrudController from "./mongoCRUD.controller.js";
 
-class ProductsController extends MongoCrudControler {
+class ProductsController extends MongoCrudController {
   constructor() {
     super(productsManager, "product");
     this.readAll = this.readAll.bind(this);
     this.showHome = this.showHome.bind(this);
     this.showProductDetail = this.showProductDetail.bind(this);
-    this.showProductsAdminPannel = this.showProductsAdminPannel.bind(this);
+    this.showProductsAdminPanel = this.showProductsAdminPanel.bind(this);
   }
 
   async readAll(req, res, next) {
@@ -51,14 +51,14 @@ class ProductsController extends MongoCrudControler {
         }
       );
       const prevPageLink = products.hasPrevPage
-        ? `http://localhost:8000/?page=${products.prevPage}&limit=${limit || 5}${
-            category ? `&category=${category}` : ""
-          }`
+        ? `http://localhost:8000/?page=${products.prevPage}&limit=${
+            limit || 5
+          }${category ? `&category=${category}` : ""}`
         : "";
       const nextPageLink = products.hasNextPage
-        ? `http://localhost:8000/?page=${products.nextPage}&limit=${limit || 5}${
-            category ? `&category=${category}` : ""
-          }`
+        ? `http://localhost:8000/?page=${products.nextPage}&limit=${
+            limit || 5
+          }${category ? `&category=${category}` : ""}`
         : "";
 
       return res.render("home.handlebars", {
@@ -83,10 +83,10 @@ class ProductsController extends MongoCrudControler {
     }
   }
 
-  async showProductsAdminPannel(req, res, next) {
+  async showProductsAdminPanel(req, res, next) {
     try {
       const { category, limit, page } = req.query;
-      const {userId} = req.params;
+      const { userId } = req.params;
       const products = await this.manager.readAll(
         category ? { category } : {},
         { page, limit: limit || 5 }
@@ -95,22 +95,22 @@ class ProductsController extends MongoCrudControler {
         { length: products.totalPages },
         (_, i) => {
           return {
-            link: `http://localhost:8000/products/admin/${userId}?page=${i + 1}&limit=${limit || 5}${
-              category ? `&category=${category}` : ""
-            }`,
+            link: `http://localhost:8000/products/admin/${userId}?page=${
+              i + 1
+            }&limit=${limit || 5}${category ? `&category=${category}` : ""}`,
             pageNumber: i + 1,
           };
         }
       );
       const prevPageLink = products.hasPrevPage
-        ? `http://localhost:8000/products/admin/${userId}?page=${products.prevPage}&limit=${limit || 5}${
-            category ? `&category=${category}` : ""
-          }`
+        ? `http://localhost:8000/products/admin/${userId}?page=${
+            products.prevPage
+          }&limit=${limit || 5}${category ? `&category=${category}` : ""}`
         : "";
       const nextPageLink = products.hasNextPage
-        ? `http://localhost:8000/products/admin/${userId}?page=${products.nextPage}&limit=${limit || 5}${
-            category ? `&category=${category}` : ""
-          }`
+        ? `http://localhost:8000/products/admin/${userId}?page=${
+            products.nextPage
+          }&limit=${limit || 5}${category ? `&category=${category}` : ""}`
         : "";
 
       return res.render("productsAdmin.handlebars", {
@@ -125,5 +125,5 @@ class ProductsController extends MongoCrudControler {
   }
 }
 
-const productsControler = new ProductsController();
-export default productsControler;
+const productsController = new ProductsController();
+export default productsController;

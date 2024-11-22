@@ -1,12 +1,12 @@
 import { Router } from "express";
-import  cartsControler  from "../../controlers/mongo/carts.controler.js";
+import  cartsController  from "../../controllers/mongo/carts.controller.js";
 
 const cartsRouter = Router();
 
-cartsRouter.get("/", cartsControler.readAll);
-cartsRouter.get("/:id", cartsControler.read);
-cartsRouter.post("/", cartsControler.create);
-cartsRouter.put("/:id", cartsControler.update);
-cartsRouter.delete("/:id", cartsControler.delete);
+cartsRouter.get("/", cartsController.readAll);
+cartsRouter.get("/:id", cartsController.read);
+cartsRouter.post("/", cartsController.create);
+cartsRouter.put("/:id", cartsController.update);
+cartsRouter.delete("/:id", cartsController.delete);
 
 export default cartsRouter

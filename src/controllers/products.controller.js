@@ -107,7 +107,7 @@ class ProductsController {
     }
   }
   
-  async showProductsAdminPanel(req, res, next) {
+  async showProductsAdminPannel(req, res, next) {
     try {
       const products = await productsManager.readAll();
       return res.render("productsAdmin.handlebars", {products});
@@ -117,5 +117,5 @@ class ProductsController {
   }
 }
 
-const productsController = new ProductsController();
-export default productsController;
+const productsControler = new ProductsController();
+export default productsControler;

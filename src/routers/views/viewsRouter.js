@@ -1,25 +1,25 @@
 import { Router } from "express";
 //fs based controllers
-// import productsControler from "../../controlers/products.controler.js";
-// import userControler from "../../controlers/users.controler.js";
+// import productsController from "../../controllers/products.controller.js";
+// import userController from "../../controllers/users.controller.js";
 
 //mongo based controllers
-import productsControler from "../../controlers/mongo/products.controler.js";
-import userControler from "../../controlers/mongo/users.controler.js";
-import cartsControler from "../../controlers/mongo/carts.controler.js";
+import productsController from "../../controllers/mongo/products.controller.js";
+import userController from "../../controllers/mongo/users.controller.js";
+import cartsController from "../../controllers/mongo/carts.controller.js";
 // middlewares
 import isAuthenticated from "../../middlewares/isAuthenticated.mid.js";
 
 const viewRouter = Router();
-viewRouter.get("/users/login", userControler.showLogin);
-viewRouter.get("/users/register", userControler.showRegister);
-viewRouter.get("/users/:userId", isAuthenticated, userControler.showUser);
-viewRouter.get("/", productsControler.showHome);
-viewRouter.get("/products/:pid", productsControler.showProductDetail);
-viewRouter.get("/cart/:id", cartsControler.showCart);
+viewRouter.get("/users/login", userController.showLogin);
+viewRouter.get("/users/register", userController.showRegister);
+viewRouter.get("/users/:userId", isAuthenticated, userController.showUser);
+viewRouter.get("/", productsController.showHome);
+viewRouter.get("/products/:pid", productsController.showProductDetail);
+viewRouter.get("/cart/:id", cartsController.showCart);
 viewRouter.get(
   "/products/admin/:userId",
   isAuthenticated,
-  productsControler.showProductsAdminPannel
+  productsController.showProductsAdminPanel
 );
 export default viewRouter;

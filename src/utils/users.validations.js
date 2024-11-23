@@ -1,7 +1,38 @@
 import Joi from "joi";
 
 class UserValidations {
-  static isValidEmail() {
+  static validationFunctions = {
+    email: UserValidations.emailSchema,
+    password: UserValidations.passwordSchema,
+    photo: UserValidations.photoSchema,
+    role: UserValidations.roleSchema,
+  };
+  constructor() {}
+  static schemaForFields(...fieldNames) {
+    try {
+      // check if all fields are supported
+      const supportedFields = Object.keys(UserValidations.validationFunctions);
+      for (const field of fieldNames) {
+        if (!supportedFields.includes(field)) {
+          const error = new Error();
+          error.message = `${field} is not a valid field for users `;
+          throw error;
+        }
+      }
+
+      // build Joi validation schema.
+      const validationObject = {}
+      for(const field of fieldNames){
+        validationObject[field] = UserValidations.validationFunctions[field]()
+      } 
+      const schema = Joi.object(validationObject);
+      return schema;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static emailSchema() {
     return Joi.string()
       .required()
       .email({
@@ -16,7 +47,7 @@ class UserValidations {
       });
   }
 
-  static isValidPassword() {
+  static passwordSchema() {
     return Joi.string()
       .required()
       .pattern(new RegExp("^[a-zA-Z0-9]{3,30}$"))
@@ -28,7 +59,7 @@ class UserValidations {
       });
   }
 
-  static isValidPhoto() {
+  static photoSchema() {
     return Joi.string()
       .uri({ scheme: ["http", "https"], allowRelative: false })
       .optional()
@@ -38,7 +69,7 @@ class UserValidations {
       });
   }
 
-  static isValidRole() {
+  static roleSchema() {
     return Joi.string().alphanum().optional().messages({
       "string.base": "If present, role must be a string",
       "string.alphanum": "If present, role must be alphanumeric",
@@ -47,4 +78,4 @@ class UserValidations {
   }
 }
 
-export { UserValidations }
+export { UserValidations };

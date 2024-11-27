@@ -1,5 +1,6 @@
 import MongoCrudController from "./mongoCRUD.controller.js";
 import UsersManager from "../../data/mongo/managers/usersManager.js";
+import {createHashUtil} from "../../utils/hash.utils.js"
 
 class UsersController extends MongoCrudController {
   constructor() {
@@ -9,6 +10,7 @@ class UsersController extends MongoCrudController {
     this.showUser = this.showUser.bind(this);
     this.showLogin = this.showLogin.bind(this);
     this.showRegister = this.showRegister.bind(this);
+    this.create = this.create.bind(this)
   }
 
   async login(req, res, next) {
@@ -72,6 +74,17 @@ class UsersController extends MongoCrudController {
       res.render("register");
     } catch (error) {
       next(error);
+    }
+  }
+
+  create(req, res, next){
+    try {
+      const {password} = req.body
+      const hashPassword = createHashUtil(password)
+      req.body.password = hashPassword
+      super.create(req, res, next)
+    } catch (error) {
+      next(error)
     }
   }
 }

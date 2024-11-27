@@ -1,5 +1,6 @@
 import MongoCrudManager from "./MongoCrudManager.js";
 import User from "../models/user.model.js";
+import { verifyHashUtil } from "../../../utils/hash.utils.js";
 
 class UserManager extends MongoCrudManager {
   constructor() {
@@ -7,12 +8,13 @@ class UserManager extends MongoCrudManager {
   }
   async login(email, password) {
     try {
-      const user = await this.model.findOne({
-        $and: [{ email: email }, { password: password }],
-      });
+      const user = await this.model.findOne({email: email});
       if (user) {
-        await this.update(user.id, { isOnline: true });
-        return user.id;
+        const correctPassword = verifyHashUtil(password, user.password);
+        if(correctPassword){
+          await this.update(user.id, { isOnline: true });
+          return user.id;
+        }
       }
       return null;
     } catch (error) {

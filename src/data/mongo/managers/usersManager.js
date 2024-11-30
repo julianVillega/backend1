@@ -8,10 +8,10 @@ class UserManager extends MongoCrudManager {
   }
   async login(email, password) {
     try {
-      const user = await this.model.findOne({email: email});
+      const user = await this.model.findOne({ email: email });
       if (user) {
         const correctPassword = verifyHashUtil(password, user.password);
-        if(correctPassword){
+        if (correctPassword) {
           await this.update(user.id, { isOnline: true });
           return user.id;
         }
@@ -40,6 +40,15 @@ class UserManager extends MongoCrudManager {
     try {
       const user = await this.read(userId);
       return user?.isOnline || false;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async readByEmail(email) {
+    try {
+      const user = await this.model.findOne({ email });
+      return user;
     } catch (error) {
       throw error;
     }

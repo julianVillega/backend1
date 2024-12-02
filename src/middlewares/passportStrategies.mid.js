@@ -1,8 +1,10 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
+import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
 import userManager from "../data/mongo/managers/usersManager.js";
 import { createHashUtil, verifyHashUtil } from "../utils/hash.utils.js";
 import { createToken, verifyToken } from "../utils/jwt.js";
+import "dotenv/config.js";
 
 passport.use(
   "register",
@@ -61,12 +63,14 @@ passport.use(
 
 passport.use(
   "logout",
-  new LocalStrategy(
-    { passReqToCallback: true, usernameField: "email" },
-    async (req, email, password, done) => {
+  new JwtStrategy(
+    {
+      jwtFromRequest: ExtractJwt.fromExtractors([(req) => req?.cookies?.token]),
+      secretOrKey: process.env.SECRET,
+    },
+    async (data, done) => {
       try {
-        const token = verifyToken(req.cookies.token);
-        let user = await userManager.read(token.userId);
+        let user = await userManager.read(data.userId);
         if (!user) {
           const error = new Error();
           error.message = "Logout Failed";

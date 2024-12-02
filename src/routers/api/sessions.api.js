@@ -18,12 +18,7 @@ sessionsRouter.post(
 
 sessionsRouter.get(
   "/logout",
-  (req, res, next) => {
-    req.body.email = "asdasd";
-    req.body.password = "asdasd";
-    next();
-  },
-  passport.authenticate("logout", { session: false }),
+  passport.authenticate("logout",{ session: false }),
   sessionsController.logout
 );
 

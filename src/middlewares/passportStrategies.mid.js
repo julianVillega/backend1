@@ -1,7 +1,8 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
 import userManager from "../data/mongo/managers/usersManager.js";
-import { createHashUtil } from "../utils/hash.utils.js";
+import { createHashUtil, verifyHashUtil } from "../utils/hash.utils.js";
+import { createToken } from "../utils/jwt.js";
 
 passport.use(
   "register",
@@ -22,6 +23,33 @@ passport.use(
         return done(null, user);
       } catch (error) {
         return done(error);
+      }
+    }
+  )
+);
+
+passport.use(
+  "login",
+  new LocalStrategy(
+    { passReqToCallback: true, usernameField: "email" },
+    async (req, email, password, done) => {
+      try {
+        //find the user
+        const user = await userManager.readByEmail(email);
+        //check user and password
+        if (!user || !verifyHashUtil(password, user.password) || user.isOnline) {
+          const error = new Error();
+          error.statusCode = 401;
+          error.message = "Authentication Failed";
+          throw error;
+        }
+        //create the token
+        const token = createToken({ userId: user._id, role: user.role });
+        await userManager.update(user._id, { isOnline: true });
+        user.token = token;
+        done(null, user);
+      } catch (error) {
+        done(error);
       }
     }
   )

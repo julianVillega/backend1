@@ -1,5 +1,3 @@
-
-
 const userId = sessionStorage.getItem("userId");
 // profile nav item and link
 const profileNavItem = document.querySelector("#profile-nav-item");
@@ -21,25 +19,24 @@ const btnLogout = document.querySelector("#btn-logout");
 if (userId) {
   profileNavLink.setAttribute("href", `/users/${userId}`);
   profileNavItem.classList.toggle("d-none");
-  
+
   productsAdminNavLink.setAttribute("href", `/products/admin/${userId}`);
   productsAdminNavItem.classList.toggle("d-none");
-  
+
   logoutNavItem.classList.toggle("d-none");
 
   //configure logout button
   btnLogout.onclick = async (e) => {
-    console.log(`/api/users/logout/${userId}`);
-    const response = await fetch(`/api/users/logout/${userId}`);
-    if(response.status === 200){
+    console.log(`/api/sessions/logout/`);
+    const response = await fetch(`/api/sessions/logout/`);
+    if (response.status === 200) {
       sessionStorage.removeItem("userId");
       location.replace("/");
-    }else{
-      Swal.fire("oops something went wrong, unable to logout")
+    } else {
+      Swal.fire("oops something went wrong, unable to logout");
     }
-  }
-
-}else{
+  };
+} else {
   //show login link
   registerNavItem.classList.toggle("d-none");
   loginNavItem.classList.toggle("d-none");

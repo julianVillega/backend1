@@ -6,7 +6,7 @@ loginForm.onsubmit = async (e) => {
   e.preventDefault();
 
   if (loginForm.checkValidity) {
-    const response = await fetch("/api/users/login", {
+    const response = await fetch("/api/sessions/login", {
       method: "POST",
       headers: {
         "content-Type": "application/json",

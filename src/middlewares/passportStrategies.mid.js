@@ -86,4 +86,26 @@ passport.use(
   )
 );
 
+passport.use(
+  "online",
+  new JwtStrategy({
+    jwtFromRequest: ExtractJwt.fromExtractors([(req) => req?.cookies?.token]),
+    secretOrKey: process.env.SECRET,
+  }, 
+  async (data, done) =>{
+    try {
+      const user = await userManager.read(data.userId);
+      if(!user || !user.isOnline){
+        const error = new Error();
+        error.statusCode = 401;
+        error.message = "forbiden"
+        throw error;
+      }
+      done(null, user)
+    } catch (error) {
+      done(error)
+    }
+  })
+);
+
 export default passport;

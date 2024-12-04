@@ -1,8 +1,10 @@
 import passport from "passport";
 import { Strategy as LocalStrategy } from "passport-local";
+import { Strategy as JwtStrategy, ExtractJwt } from "passport-jwt";
 import userManager from "../data/mongo/managers/usersManager.js";
 import { createHashUtil, verifyHashUtil } from "../utils/hash.utils.js";
-import { createToken } from "../utils/jwt.js";
+import { createToken, verifyToken } from "../utils/jwt.js";
+import "dotenv/config.js";
 
 passport.use(
   "register",
@@ -37,7 +39,11 @@ passport.use(
         //find the user
         const user = await userManager.readByEmail(email);
         //check user and password
-        if (!user || !verifyHashUtil(password, user.password) || user.isOnline) {
+        if (
+          !user ||
+          !verifyHashUtil(password, user.password) ||
+          user.isOnline
+        ) {
           const error = new Error();
           error.statusCode = 401;
           error.message = "Authentication Failed";
@@ -47,6 +53,31 @@ passport.use(
         const token = createToken({ userId: user._id, role: user.role });
         await userManager.update(user._id, { isOnline: true });
         user.token = token;
+        done(null, user);
+      } catch (error) {
+        done(error);
+      }
+    }
+  )
+);
+
+passport.use(
+  "logout",
+  new JwtStrategy(
+    {
+      jwtFromRequest: ExtractJwt.fromExtractors([(req) => req?.cookies?.token]),
+      secretOrKey: process.env.SECRET,
+    },
+    async (data, done) => {
+      try {
+        let user = await userManager.read(data.userId);
+        if (!user) {
+          const error = new Error();
+          error.message = "Logout Failed";
+          error.statusCode = 404;
+          throw error;
+        }
+        user = await userManager.update(user._id, { isOnline: false });
         done(null, user);
       } catch (error) {
         done(error);

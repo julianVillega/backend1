@@ -1,6 +1,8 @@
 class SessionsController {
   constructor() {
     this.register = this.register.bind(this);
+    this.login = this.login.bind(this);
+    this.logout = this.logout.bind(this);
   }
   register(req, res, next) {
     try {
@@ -12,14 +14,32 @@ class SessionsController {
     }
   }
 
-  login(req, res, next){
+  login(req, res, next) {
     try {
-      const user = req.user
-      return res.status(200)
-      .cookie("token", user.token, { maxAge : 3600, signed: true, httpOnly:true})
-      .json({message: "login successful", response: user.id})
+      const user = req.user;
+      return res
+        .cookie("token", user.token, {
+          maxAge: 3600000,
+        })
+        .status(200)
+        .json({ message: "login successful", response: user.id });
     } catch (error) {
-      next(error)
+      next(error);
+    }
+  }
+
+  logout(req, res, next) {
+    try {
+      const user = req.user;
+      return res
+        .clearCookie("token")
+        .status(200)
+        .json({
+          message: `user ${user.id} loged out`,
+          response: "logout successful",
+        });
+    } catch (error) {
+      next(error);
     }
   }
 }

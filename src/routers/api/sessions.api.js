@@ -16,4 +16,10 @@ sessionsRouter.post(
   sessionsController.login
 );
 
+sessionsRouter.get(
+  "/logout",
+  passport.authenticate("logout",{ session: false }),
+  sessionsController.logout
+);
+
 export default sessionsRouter;

@@ -65,7 +65,7 @@ passport.use(
   "logout",
   new JwtStrategy(
     {
-      jwtFromRequest: ExtractJwt.fromExtractors([(req) => req?.cookies?.token]),
+      jwtFromRequest: ExtractJwt.fromExtractors([(req) => req?.signedCookies?.token]),
       secretOrKey: process.env.SECRET,
     },
     async (data, done) => {
@@ -89,7 +89,7 @@ passport.use(
 passport.use(
   "online",
   new JwtStrategy({
-    jwtFromRequest: ExtractJwt.fromExtractors([(req) => req?.cookies?.token]),
+    jwtFromRequest: ExtractJwt.fromExtractors([(req) => req?.signedCookies?.token]),
     secretOrKey: process.env.SECRET,
   }, 
   async (data, done) =>{

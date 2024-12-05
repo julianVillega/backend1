@@ -14,10 +14,10 @@ passport.use(
       try {
         let user = await userManager.readByEmail(email);
         if (user) {
-          const error = new Error();
-          error.statusCode = 400;
-          error.message = "Email already in use";
-          throw error;
+          done(null, false, {
+            message: "Email already in use",
+            statusCode: 400,
+          });
         }
         const data = req.body;
         const hashedPassword = createHashUtil(password);
@@ -38,16 +38,13 @@ passport.use(
       try {
         //find the user
         const user = await userManager.readByEmail(email);
-        //check user and password
+        //check user, password, and online status
         if (
           !user ||
           !verifyHashUtil(password, user.password) ||
           user.isOnline
         ) {
-          const error = new Error();
-          error.statusCode = 401;
-          error.message = "Authentication Failed";
-          throw error;
+          done(null, false, { message: "Login failed", statusCode: 401 });
         }
         //create the token
         const token = createToken({ userId: user._id, role: user.role });
@@ -65,17 +62,16 @@ passport.use(
   "logout",
   new JwtStrategy(
     {
-      jwtFromRequest: ExtractJwt.fromExtractors([(req) => req?.signedCookies?.token]),
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        (req) => req?.signedCookies?.token,
+      ]),
       secretOrKey: process.env.SECRET,
     },
     async (data, done) => {
       try {
         let user = await userManager.read(data.userId);
         if (!user) {
-          const error = new Error();
-          error.message = "Logout Failed";
-          error.statusCode = 404;
-          throw error;
+          done(null, false, { message: "Logout Failed", statusCode: 404 });
         }
         user = await userManager.update(user._id, { isOnline: false });
         done(null, user);
@@ -88,24 +84,25 @@ passport.use(
 
 passport.use(
   "online",
-  new JwtStrategy({
-    jwtFromRequest: ExtractJwt.fromExtractors([(req) => req?.signedCookies?.token]),
-    secretOrKey: process.env.SECRET,
-  }, 
-  async (data, done) =>{
-    try {
-      const user = await userManager.read(data.userId);
-      if(!user || !user.isOnline){
-        const error = new Error();
-        error.statusCode = 401;
-        error.message = "forbiden"
-        throw error;
+  new JwtStrategy(
+    {
+      jwtFromRequest: ExtractJwt.fromExtractors([
+        (req) => req?.signedCookies?.token,
+      ]),
+      secretOrKey: process.env.SECRET,
+    },
+    async (data, done) => {
+      try {
+        const user = await userManager.read(data.userId);
+        if (!user || !user.isOnline) {
+          done(null, false, { message: "forbiden", statusCode: 401 });
+        }
+        done(null, user);
+      } catch (error) {
+        done(error);
       }
-      done(null, user)
-    } catch (error) {
-      done(error)
     }
-  })
+  )
 );
 
 export default passport;

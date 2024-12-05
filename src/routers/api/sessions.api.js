@@ -1,24 +1,24 @@
 import { Router } from "express";
 import sessionsController from "../../controllers/mongo/sessions.controller.js";
 import validateCreation from "../../middlewares/validations/users.creation.mid.js";
-import passport from "../../middlewares/passportStrategies.mid.js";
+import passportCb from "../../middlewares/passportCb.js";
 const sessionsRouter = Router();
 
 sessionsRouter.post(
   "/register",
   validateCreation,
-  passport.authenticate("register", { session: false }),
+  passportCb("register"),
   sessionsController.register
 );
 sessionsRouter.post(
   "/login",
-  passport.authenticate("login", { session: false }),
+  passportCb("login"),
   sessionsController.login
 );
 
 sessionsRouter.get(
   "/logout",
-  passport.authenticate("logout",{ session: false }),
+  passportCb("logout"),
   sessionsController.logout
 );
 

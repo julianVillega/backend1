@@ -4,7 +4,7 @@ import { Router } from "express";
 import productsController from "../../controllers/mongo/products.controller.js";
 import isValidProduct from "../../middlewares/isValidProduct.mid.js";
 import setDefaultValues from "../../middlewares/setProductDefaultValues.mid.js";
-import passport from "../../middlewares/passportStrategies.mid.js";
+import passportCb from "../../middlewares/passportCb.js";
 
 const productsRouter = Router();
 
@@ -14,18 +14,18 @@ productsRouter.post(
   "/",
   isValidProduct,
   setDefaultValues,
-  passport.authenticate("online", { session: false }),
+  passportCb("online"),
   productsController.create
 );
 productsRouter.put(
   "/:id",
   isValidProduct,
-  passport.authenticate("online", { session: false }),
+  passportCb("online"),
   productsController.update
 );
 productsRouter.delete(
   "/:id",
-  passport.authenticate("online", { session: false }),
+  passportCb("online"),
   productsController.delete
 );
 export default productsRouter;

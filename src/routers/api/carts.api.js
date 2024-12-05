@@ -1,32 +1,32 @@
 import { Router } from "express";
 import cartsController from "../../controllers/mongo/carts.controller.js";
-import passport from "../../middlewares/passportStrategies.mid.js";
+import passportCb from "../../middlewares/passportCb.js";
 
 const cartsRouter = Router();
 
 cartsRouter.get(
   "/",
-  passport.authenticate("online", { session: false }),
+  passportCb("online"),
   cartsController.readAll
 );
 cartsRouter.get(
   "/:id",
-  passport.authenticate("online", { session: false }),
+  passportCb("online"),
   cartsController.read
 );
 cartsRouter.post(
   "/",
-  passport.authenticate("online", { session: false }),
+  passportCb("online"),
   cartsController.create
 );
 cartsRouter.put(
   "/:id",
-  passport.authenticate("online", { session: false }),
+  passportCb("online"),
   cartsController.update
 );
 cartsRouter.delete(
   "/:id",
-  passport.authenticate("online", { session: false }),
+  passportCb("online"),
   cartsController.delete
 );
 

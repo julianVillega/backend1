@@ -20,6 +20,8 @@ class SessionsController {
       return res
         .cookie("token", user.token, {
           maxAge: 3600000,
+          signed: true,
+          httpOnly:true
         })
         .status(200)
         .json({ message: "login successful", response: user.id });

@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { verifyToken } from "../utils/jwt.js";
+import usersManager from "../data/mongo/managers/usersManager.js";
 
 class CustomRouter {
   constructor() {
@@ -34,12 +35,12 @@ class CustomRouter {
       if (policies.includes("PUBLIC")) {
         return next();
       }
-      const token = req?.cookies?.token;
+      const token = req?.signedCookies?.token;
 
       if (!token) return res.json401();
       const data = verifyToken(token, process.env.SECRET);
-      const { role, user_id } = data;
-      const user = await readById(user_id);
+      const { role, userId } = data;
+      const user = await usersManager.read(userId);
       if (!role || !user) return res.json401();
       if (policies.includes(role)) {
         req.user = user;

@@ -2,24 +2,34 @@ import { Router } from "express";
 import sessionsController from "../../controllers/mongo/sessions.controller.js";
 import validateCreation from "../../middlewares/validations/users.creation.mid.js";
 import passportCb from "../../middlewares/passportCb.js";
-const sessionsRouter = Router();
+import CustomRouter from "../customRouter.js";
+// const sessionsRouter = Router();
 
-sessionsRouter.post(
-  "/register",
-  validateCreation,
-  passportCb("register"),
-  sessionsController.register
-);
-sessionsRouter.post(
-  "/login",
-  passportCb("login"),
-  sessionsController.login
-);
+// sessionsRouter.post(
+//   "/login",
+//   passportCb("login"),
+//   sessionsController.login
+// );
 
-sessionsRouter.get(
-  "/logout",
-  passportCb("logout"),
-  sessionsController.logout
-);
+// sessionsRouter.get(
+//   "/logout",
+//   passportCb("logout"),
+//   sessionsController.logout
+// );
 
-export default sessionsRouter;
+// export default sessionsRouter;
+
+class SessionRouter extends CustomRouter {
+  constructor() {
+    super();
+    this.create(
+      "/register",
+      ["PUBLIC"],
+      validateCreation,
+      passportCb("register"),
+      sessionsController.register
+    );
+  }
+}
+
+export default new SessionRouter();

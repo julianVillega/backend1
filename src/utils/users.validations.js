@@ -8,7 +8,7 @@ class UserValidations {
     role: UserValidations.roleSchema,
   };
   constructor() {}
-  static schemaForFields(...fieldNames) {
+  static validationsForFields(...fieldNames) {
     try {
       // check if all fields are supported
       const supportedFields = Object.keys(UserValidations.validationFunctions);
@@ -26,7 +26,27 @@ class UserValidations {
         validationObject[field] = UserValidations.validationFunctions[field]()
       } 
       const schema = Joi.object(validationObject);
-      return schema;
+      
+      const validationFunction = (req, res, next) =>{
+        // const values = fieldNames.map(field => req.body[field])
+        
+        const values = fieldNames.reduce((acc, key) => {
+          if (key in req.body) acc[key] = req.body[key];
+          return acc;
+        }, {});
+        
+        const { error } = schema.validate(values, { abortEarly: false });
+      
+        if (error) {
+          // Create error and throw it
+          const message = error.details.map((detail) => detail.message).join(", ");
+          const newError = new Error(message);
+          newError.statusCode = 400;
+          throw newError;
+        }
+        next();
+      }
+      return validationFunction;
     } catch (error) {
       throw error;
     }

@@ -34,7 +34,7 @@ class MongoCrudController {
       const instance = await this.manager.read(id);
       if (instance) {
         return res.status(200).json({
-          message: `fetched ${this.modelName} with id ${instance.id} `,
+          message: `fetched ${this.modelName} with id ${instance._id} `,
           response: instance,
         });
       } else {

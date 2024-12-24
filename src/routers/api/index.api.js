@@ -12,8 +12,7 @@ const apiRouter = Router();
 apiRouter.use("/products", productsRouter);
 apiRouter.use("/users", usersRouter);
 apiRouter.use("/carts", cartsRouter)
-apiRouter.use("/sessions", sessionsRouter)
-//! to be implemented: apiRouter.use("/carts", cartsRouter);
+apiRouter.use("/sessions", sessionsRouter._router)
 
 // 3. export the router
 export default apiRouter;

@@ -44,7 +44,10 @@ passport.use(
           !verifyHashUtil(password, user.password) ||
           user.isOnline
         ) {
-          done(null, false, { message: "Login failed", statusCode: 401 });
+          const error = new Error();
+          error.message = "Login failed";
+          error.statusCode = 401;
+          throw error;
         }
         //create the token
         const token = createToken({ userId: user._id, role: user.role });
@@ -52,7 +55,10 @@ passport.use(
         user.token = token;
         done(null, user);
       } catch (error) {
-        done(error);
+        done(error, false, {
+          message: error.message,
+          statusCode: error.statusCode,
+        });
       }
     }
   )

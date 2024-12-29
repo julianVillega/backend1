@@ -10,7 +10,7 @@ const apiRouter = Router();
 
 // 2. add the routers for the different resources
 apiRouter.use("/products", productsRouter);
-//apiRouter.use("/users", usersRouter);
+apiRouter.use("/users", usersRouter);
 apiRouter.use("/carts", cartsRouter)
 apiRouter.use("/sessions", sessionsRouter._router)
 

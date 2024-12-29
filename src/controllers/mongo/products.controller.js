@@ -1,10 +1,9 @@
-import productsManager from "../../data/mongo/managers/productsManager.js";
 import MongoCrudController from "./mongoCRUD.controller.js";
 import productsService from "../../services/products.service.js";
 
 class ProductsController extends MongoCrudController {
   constructor() {
-    super(productsManager, "product");
+    super(productsService, "product");
     this.readAll = this.readAll.bind(this);
     this.showHome = this.showHome.bind(this);
     this.showProductDetail = this.showProductDetail.bind(this);

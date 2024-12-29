@@ -16,7 +16,7 @@ class UsersController extends MongoCrudController {
   async login(req, res, next) {
     try {
       const { email, password } = req.body;
-      const userId = await this.manager.login(email, password);
+      const userId = await this.service.login(email, password);
       if (userId) {
         console.log(userId);
         return res
@@ -36,7 +36,7 @@ class UsersController extends MongoCrudController {
   async logout(req, res, next) {
     try {
       const { id } = req.params;
-      const logoutSuccessful = await this.manager.logout(id);
+      const logoutSuccessful = await this.service.logout(id);
       if (logoutSuccessful) {
         return res
           .status(200)
@@ -54,7 +54,7 @@ class UsersController extends MongoCrudController {
   async showUser(req, res, next) {
     try {
       const { userId } = req.params;
-      const user = await this.manager.read(userId);
+      const user = await this.service.read(userId);
       res.render("userProfile.handlebars", { user });
     } catch (error) {
       next(error);

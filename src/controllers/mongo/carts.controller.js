@@ -1,10 +1,9 @@
 import MongoCrudController from "./mongoCRUD.controller.js";
-import cartsManager from "../../data/mongo/managers/cartsManager.js";
 import cartsService from "../../services/carts.service.js";
 
 class CartsController extends MongoCrudController {
   constructor() {
-    super(cartsManager, "cart");
+    super(cartsService, "cart");
     this.read = this.read.bind(this);
     this.showCart = this.showCart.bind(this);
   }

@@ -25,5 +25,3 @@ export default async function sendEmail(data) {
     throw error;
   }
 }
-
-sendEmail();

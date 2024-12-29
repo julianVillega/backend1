@@ -7,10 +7,12 @@ const schema = new Schema({
     type: String,
     default: "https://random.imagecdn.app/200/200",
   },
-  email: { type: String, required: true, unique:true },
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   role: { type: String, default: "USER", enum: ["USER", "ADMIN"] },
   isOnline: { type: Boolean, default: false },
+  verificationCode: { type: String , default:"verificationCode"},
+  isVerified: { type: Boolean, default: false },
 });
 
 const User = model(collection, schema);

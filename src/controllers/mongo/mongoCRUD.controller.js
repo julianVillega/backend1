@@ -1,6 +1,6 @@
 class MongoCrudController {
-  constructor(manager, modelName) {
-    this.manager = manager;
+  constructor(service, modelName) {
+    this.service = service;
     this.modelName = modelName;
     this.create = this.create.bind(this);
     this.read = this.read.bind(this);
@@ -9,102 +9,57 @@ class MongoCrudController {
     this.update = this.update.bind(this);
   }
 
-  async readAll(req, res, next) {
-    try {
-      const filter = req.query;
-      const instances = await this.manager.readAll(filter);
-      if (instances.length > 0) {
-        return res.status(200).json({
-          message: `fetched ${instances.length} ${this.modelName}s`,
-          response: instances,
-        });
-      } else {
-        const error = new Error(`no ${this.modelName}s were found`);
-        error.statusCode = 404;
-        throw error;
-      }
-    } catch (error) {
-      return next(error);
-    }
+  async readAll(req, res) {
+    const filter = req.query;
+    const instances = await this.service.readAll(filter);
+
+    return instances.length > 0
+      ? res.json200(instances, `fetched ${instances.length} ${this.modelName}s`)
+      : res.json404(null, `no ${this.modelName}s were found`);
   }
 
-  async read(req, res, next) {
-    try {
-      const { id } = req.params;
-      const instance = await this.manager.read(id);
-      if (instance) {
-        return res.status(200).json({
-          message: `fetched ${this.modelName} with id ${instance._id} `,
-          response: instance,
-        });
-      } else {
-        const error = new Error(
-          `${this.modelName} with id ${id} was not found`
-        );
-        error.statusCode = 404;
-        throw error;
-      }
-    } catch (error) {
-      return next(error);
-    }
+  async read(req, res) {
+    const { id } = req.params;
+    const instance = await this.service.read(id);
+    return instance
+      ? res.json200(
+          instance,
+          `fetched ${this.modelName} with id ${instance._id} `
+        )
+      : res.json404(null, `${this.modelName} with id ${id} was not found`);
   }
 
-  async create(req, res, next) {
-    try {
-      const data = req.body;
-      const instance = await this.manager.create(data);
-      console.log(instance.id);
-      console.log(instance._id);
-      return res.status(201).json({
-        message: `created ${this.modelName} with id ${instance._id}`,
-        response: instance._id,
-      });
-    } catch (error) {
-      return next(error);
-    }
+  async create(req, res) {
+    const data = req.body;
+    const instance = await this.service.create(data);
+    return res.json201(
+      instance._id,
+      `created ${this.modelName} with id ${instance._id}`
+    );
   }
 
-  async update(req, res, next) {
-    try {
-      const { id } = req.params;
-      const data = req.body;
-      const instance = await this.manager.update(id, data);
-      if (instance) {
-        return res.status(200).json({
-          message: `updated ${this.modelName} with id ${id}`,
-          response: instance,
-        });
-      } else {
-        const error = new Error(
-          `${this.modelName} with id ${id} was not found`
-        );
-        error.statusCode = 404;
-        throw error;
-      }
-    } catch (error) {
-      return next(error);
-    }
+  async update(req, res) {
+    const { id } = req.params;
+    const data = req.body;
+    const instance = await this.service.update(id, data);
+    return instance
+      ? res.json200(
+          instance,
+          `updated ${this.modelName} with id ${instance._id} `
+        )
+      : res.json404(null, `${this.modelName} with id ${id} was not found`);
   }
 
-  async delete(req, res, next) {
-    try {
-      const { id } = req.params;
-      const instance = await this.manager.delete(id);
-      if (instance) {
-        return res.status(200).json({
-          message: `${this.modelName} with id ${id} was deleted`,
-          response: instance,
-        });
-      } else {
-        const error = new Error(
-          `${this.modelName} with id ${id} was not found`
-        );
-        error.statusCode = 404;
-        throw error;
-      }
-    } catch (error) {
-      return next(error);
-    }
+  async delete(req, res) {
+    const { id } = req.params;
+    const instance = await this.service.delete(id);
+
+    return instance
+      ? res.json200(
+          instance,
+          `deleted ${this.modelName} with id ${instance._id} `
+        )
+      : res.json404(null, `${this.modelName} with id ${id} was not found`);
   }
 }
 

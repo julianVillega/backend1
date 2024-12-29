@@ -1,39 +1,24 @@
-import productsManager from "../../data/mongo/managers/productsManager.js";
-import MongoCrudController from "./mongoCRUD.controller.js";
-
-class ProductsController extends MongoCrudController {
+import productsManager from "../data/mongo/managers/productsManager.js";
+import MongoCrudService from "./mongoCrudService.js";
+class ProductsService extends MongoCrudService {
   constructor() {
-    super(productsManager, "product");
-    this.readAll = this.readAll.bind(this);
-    this.showHome = this.showHome.bind(this);
-    this.showProductDetail = this.showProductDetail.bind(this);
-    this.showProductsAdminPanel = this.showProductsAdminPanel.bind(this);
+    super(productsManager);
   }
 
-  async readAll(req, res, next) {
-    const { category, limit, page } = req.query;
-    const instances = await this.manager.readAll(category ? { category } : {}, {
+  async readAll(category, limit, page) {
+    const instances = await this.manager.readAll(category, {
       limit,
       page,
     });
-    if (instances.docs.length > 0) {
-      return res.status(200).json({
-        message: `fetched ${instances.docs.length} ${this.modelName}s`,
-        response: instances,
-      });
-    } else {
-      const error = new Error(`no ${this.modelName}s were found`);
-      error.statusCode = 404;
-      throw error;
-    }
+    return instances;
   }
 
-  async showHome(req, res, next) {
-    const { category, limit, page } = req.query;
-    const products = await this.manager.readAll(category ? { category } : {}, {
+  async showHome(category, limit, page) {
+    const products = await this.manager.readAll(category, {
       page,
       limit: limit || 5,
     });
+
     const pagesLinkArray = Array.from(
       { length: products.totalPages },
       (_, i) => {
@@ -55,26 +40,22 @@ class ProductsController extends MongoCrudController {
           category ? `&category=${category}` : ""
         }`
       : "";
-
-    return res.render("home.handlebars", {
+    return {
       products,
       pagesLinkArray,
       prevPageLink,
       nextPageLink,
-    });
+    };
   }
 
-  async showProductDetail(req, res, next) {
-    const { pid } = req.params;
+  async showProductDetail(pid) {
     const product = await this.manager.read(pid);
     product.id = product._id.toString();
-    return res.render("productDetail.handlebars", { product });
+    return product;
   }
 
-  async showProductsAdminPanel(req, res, next) {
-    const { category, limit, page } = req.query;
-    const { userId } = req.params;
-    const products = await this.manager.readAll(category ? { category } : {}, {
+  async showProductsAdminPanel(category, limit, page, userId) {
+    const products = await this.manager.readAll(category, {
       page,
       limit: limit || 5,
     });
@@ -99,15 +80,8 @@ class ProductsController extends MongoCrudController {
           products.nextPage
         }&limit=${limit || 5}${category ? `&category=${category}` : ""}`
       : "";
-
-    return res.render("productsAdmin.handlebars", {
-      products,
-      pagesLinkArray,
-      prevPageLink,
-      nextPageLink,
-    });
+    return { products, pagesLinkArray, prevPageLink, nextPageLink };
   }
 }
 
-const productsController = new ProductsController();
-export default productsController;
+export default new ProductsService();

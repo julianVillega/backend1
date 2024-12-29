@@ -24,7 +24,7 @@ class cartsRouter extends CustomRouter {
       cartsController.create
     );
     this.update(
-      "/",
+      "/:id",
       ["USER"],
       passportCb("online"),
       cartsController.update

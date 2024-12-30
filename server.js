@@ -7,6 +7,7 @@ import { engine } from "express-handlebars";
 import __dirname from "./utils.js";
 import "dotenv/config.js";
 import dbConnection from "./src/utils/db.js";
+import cookieParser from "cookie-parser";
 
 try {
   // 1. create the server
@@ -17,20 +18,23 @@ try {
     dbConnection();
   };
 
-  // 1.2. config the server to use url params and query params
+  // config the server to use url params and query params
   server.use(express.urlencoded({ extended: true }));
 
-  // 1.3. config the server to use json as the body on requirements
+  // config the server to use json as the body on requirements
   server.use(express.json());
+
+  // config cookies middleware
+  server.use(cookieParser(process.env.SECRET))
 
   server.use(morgan("dev"));
 
-  // 1.4. run the server
+  // run the server
   server.listen(port, ready);
 
-  // 2. set up the routes
+  // set up the routes
   server.get("/api", index);
-  // 2.1 products crud routes
+  //  products crud routes
   server.use(router);
 
   // static folder

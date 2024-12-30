@@ -12,13 +12,18 @@ loginForm.onsubmit = async (e) => {
         "content-Type": "application/json",
       },
       body: JSON.stringify({ email: email.value, password: password.value }),
+      redirect:"follow"
     });
     if (response.status === 200) {
       const json = await response.json();
       const userId = json.response;
       sessionStorage.setItem("userId", userId);
       window.location.replace(`/users/${userId}`);
-    } else {
+    } 
+    if (response.status === 302){
+      window.location.replace(response.url);
+    }
+    else {
       Swal.fire("invalid email or password");
     }
   }

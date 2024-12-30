@@ -43,13 +43,17 @@ passport.use(
         //check user, password, and online status
         if (
           !user ||
-          !verifyHashUtil(password, user.password) ||
-          user.isOnline
+          !verifyHashUtil(password, user.password)
         ) {
           const error = new Error();
           error.message = "Login failed";
           error.statusCode = 401;
           throw error;
+        }
+        if(!user.isVerified){
+          console.log("user has not verified account")
+          console.log("1 passport redirecting to verify view");
+          return req.res.redirect(302, `/users/verify/${user.id}`);
         }
         //create the token
         const token = createToken({ userId: user._id, role: user.role });

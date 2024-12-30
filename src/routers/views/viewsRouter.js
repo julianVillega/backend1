@@ -13,10 +13,11 @@ import isAuthenticated from "../../middlewares/isAuthenticated.mid.js";
 const viewRouter = Router();
 viewRouter.get("/users/login", userController.showLogin);
 viewRouter.get("/users/register", userController.showRegister);
+viewRouter.get("/users/verify/:id", userController.showVerify);
 viewRouter.get("/users/:userId", isAuthenticated, userController.showUser);
 viewRouter.get("/", productsController.showHome);
 viewRouter.get("/products/:pid", productsController.showProductDetail);
-viewRouter.get("/cart/:id", cartsController.showCart);
+viewRouter.get("/carts/:id", cartsController.showCart);
 viewRouter.get(
   "/products/admin/:userId",
   isAuthenticated,

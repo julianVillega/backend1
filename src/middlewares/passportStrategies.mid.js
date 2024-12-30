@@ -5,6 +5,7 @@ import userManager from "../data/mongo/managers/usersManager.js";
 import { createHashUtil, verifyHashUtil } from "../utils/hash.utils.js";
 import { createToken, verifyToken } from "../utils/jwt.js";
 import "dotenv/config.js";
+import usersService from "../services/users.service.js";
 
 passport.use(
   "register",
@@ -22,6 +23,7 @@ passport.use(
         const data = req.body;
         const hashedPassword = createHashUtil(password);
         user = await userManager.create({ ...data, password: hashedPassword });
+        await usersService.sendVerificationCode(user);
         return done(null, user);
       } catch (error) {
         return done(error);
@@ -41,13 +43,17 @@ passport.use(
         //check user, password, and online status
         if (
           !user ||
-          !verifyHashUtil(password, user.password) ||
-          user.isOnline
+          !verifyHashUtil(password, user.password)
         ) {
           const error = new Error();
           error.message = "Login failed";
           error.statusCode = 401;
           throw error;
+        }
+        if(!user.isVerified){
+          console.log("user has not verified account")
+          console.log("1 passport redirecting to verify view");
+          return req.res.redirect(302, `/users/verify/${user.id}`);
         }
         //create the token
         const token = createToken({ userId: user._id, role: user.role });

@@ -1,21 +1,14 @@
 import { Router } from "express";
 
 //mongo based controllers
-import productsController from "../../controllers/mongo/products.controller.js";
 import cartsController from "../../controllers/mongo/carts.controller.js";
-// middlewares
-import isAuthenticated from "../../middlewares/isAuthenticated.mid.js";
+// View routers
 import usersRouter from "./users.view.api.js";
+import productsRouter from "./products.view.api.js";
 
 const viewRouter = Router();
 
-viewRouter.use("/users",usersRouter);
-viewRouter.get("/", productsController.showHome);
-viewRouter.get("/products/:pid", productsController.showProductDetail);
+viewRouter.use("/users", usersRouter);
+viewRouter.use("/",productsRouter);
 viewRouter.get("/carts/:id", cartsController.showCart);
-viewRouter.get(
-  "/products/admin/:userId",
-  isAuthenticated,
-  productsController.showProductsAdminPanel
-);
 export default viewRouter;

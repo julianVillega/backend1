@@ -6,6 +6,7 @@ import isSameUser from "../../middlewares/isSameUser.mid.js";
 class UsersRouter extends CustomRouter {
   constructor() {
     super();
+    this.create("/verify/",["PUBLIC"], userController.verify)
     this.read("/", ["ADMIN"], userController.readAll);
     this.read("/:id",["USER","ADMIN"], isSameUser, userController.read)
     this.update("/:id", ["USER", "ADMIN"], isSameUser ,validateUpdate, userController.update)

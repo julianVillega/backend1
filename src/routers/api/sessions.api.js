@@ -3,6 +3,7 @@ import validateCreation from "../../middlewares/validations/users.creation.mid.j
 import passportCb from "../../middlewares/passportCb.js";
 import CustomRouter from "../customRouter.js";
 import validateCredentials from "../../middlewares/validations/users.credentilas.js";
+import isVerifiedUser from "../../middlewares/isVerifiedUser.mid.js";
 // const sessionsRouter = Router();
 
 

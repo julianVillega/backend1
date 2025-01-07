@@ -1,11 +1,11 @@
 import CustomRouter from "../customRouter.js";
-import cartsController from "../../controllers/mongo/carts.controller.js";
+import viewsController from "../../controllers/views.controller.js";
 import isSameUser from "../../middlewares/isSameUser.mid.js";
 
 class CartsRouter extends CustomRouter {
   constructor() {
     super();
-    this.read("/:id", ["USER", "ADMIN"], isSameUser, cartsController.showCart);
+    this.read("/:id", ["USER", "ADMIN"], isSameUser, viewsController.showCart);
   }
 }
 

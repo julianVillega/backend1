@@ -1,19 +1,19 @@
 import CustomRouter from "../customRouter.js";
-import productsController from "../../controllers/mongo/products.controller.js";
+import viewsController from "../../controllers/views.controller.js";
 
 class ProductsRouter extends CustomRouter {
   constructor() {
     super();
-    this.read("/", ["PUBLIC"], productsController.showHome);
+    this.read("/", ["PUBLIC"], viewsController.showHome);
     this.read(
       "/products/:pid",
       ["PUBLIC"],
-      productsController.showProductDetail
+      viewsController.showProductDetail
     );
     this.read(
       "/products/admin/:userId",
       ["ADMIN"],
-      productsController.showProductsAdminPanel
+      viewsController.showProductsAdminPanel
     );
   }
 }

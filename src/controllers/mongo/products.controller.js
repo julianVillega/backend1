@@ -5,9 +5,6 @@ class ProductsController extends MongoCrudController {
   constructor() {
     super(productsService, "product");
     this.readAll = this.readAll.bind(this);
-    this.showHome = this.showHome.bind(this);
-    this.showProductDetail = this.showProductDetail.bind(this);
-    this.showProductsAdminPanel = this.showProductsAdminPanel.bind(this);
   }
 
   async readAll(req, res, next) {
@@ -26,38 +23,6 @@ class ProductsController extends MongoCrudController {
     }
   }
 
-  async showHome(req, res, next) {
-    try {
-      const { category, limit, page } = req.query;
-      const productsAndLinks = await productsService.showHome(category, limit, page)
-      return res.render("home.handlebars", productsAndLinks);
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async showProductDetail(req, res, next) {
-    try {
-      const { pid } = req.params;
-      const product = await productsService.showProductDetail(pid);
-      return res.render("productDetail.handlebars", { product });
-    } catch (error) {
-      next(error);
-    }
-  }
-
-  async showProductsAdminPanel(req, res, next) {
-    try {
-      const { category, limit, page } = req.query;
-      const { userId } = req.params;
-      console.log(req.user)
-      const productsAndLinks = await productsService.showProductsAdminPanel(category, limit, page, userId)
-
-      return res.render("productsAdmin.handlebars", productsAndLinks);
-    } catch (error) {
-      next(error);
-    }
-  }
 }
 
 const productsController = new ProductsController();

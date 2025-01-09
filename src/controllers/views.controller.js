@@ -1,6 +1,6 @@
 import cartsService from "../services/carts.service.js";
 import productsService from "../services/products.service.js";
-import usersService from "../services/users.service.js"
+import usersService from "../services/users.service.js";
 
 class ViewsController {
   constructor() {
@@ -65,6 +65,10 @@ class ViewsController {
   showVerify(req, res, next) {
     const { id } = req.params;
     res.status(302).render("verifyAccount", { id });
+  }
+
+  showPasswordRecovery(req, res, next) {
+    return res.status(200).render("passwordRecovery.handlebars");
   }
 }
 

@@ -25,3 +25,18 @@ export default async function sendEmail(data) {
     throw error;
   }
 }
+
+export async function sendPasswordRecoveryCodeEmail(email, code) {
+  try {
+    await transport.verify();
+    await transport.sendMail({
+      from: GMAIL_EMAIL,
+      to: email,
+      subject: "TiendaTuya Password Recovey",
+      html: `<h1>This is your password recovery code for tienda tuya<h1>
+    <p>${code}</p>`,
+    });
+  } catch (error) {
+    throw error;
+  }
+}

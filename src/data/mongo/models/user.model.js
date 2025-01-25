@@ -11,8 +11,9 @@ const schema = new Schema({
   password: { type: String, required: true },
   role: { type: String, default: "USER", enum: ["USER", "ADMIN"] },
   isOnline: { type: Boolean, default: false },
-  verificationCode: { type: String , default:"verificationCode"},
+  verificationCode: { type: String, default: "verificationCode" },
   isVerified: { type: Boolean, default: false },
+  passwordRecoveryCode: { type: String, default: "" },
 });
 
 const User = model(collection, schema);

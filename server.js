@@ -13,6 +13,7 @@ try {
   // 1. create the server
   const server = express();
   const port = 8000;
+
   const ready = () => {
     console.log(`server ready on port ${port}`);
     dbConnection();
@@ -34,6 +35,7 @@ try {
 
   // set up the routes
   server.get("/api", index);
+  
   //  products crud routes
   server.use(router);
 

@@ -20,6 +20,7 @@ if (userId) {
   profileNavLink.setAttribute("href", `/users/${userId}`);
   profileNavItem.classList.toggle("d-none");
 
+
   productsAdminNavLink.setAttribute("href", `/products/admin/${userId}`);
   productsAdminNavItem.classList.toggle("d-none");
 
@@ -27,6 +28,7 @@ if (userId) {
 
   //configure logout button
   btnLogout.onclick = async (e) => {
+    
     console.log(`/api/sessions/logout/`);
     const response = await fetch(`/api/sessions/logout/`);
     if (response.status === 200) {

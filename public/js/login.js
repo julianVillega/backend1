@@ -12,6 +12,7 @@ loginForm.onsubmit = async (e) => {
         "content-Type": "application/json",
       },
       body: JSON.stringify({ email: email.value, password: password.value }),
+      
       redirect:"follow"
     });
     if (response.status === 200) {

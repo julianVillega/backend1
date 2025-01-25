@@ -1,4 +1,5 @@
 
+
 # Challenge 3
   * [How to test challenge 3](#how-to-test-challenge-3)
   * [Features implemented in this challenge](#features-implemented-in-challenge-3)
@@ -180,6 +181,7 @@ A better alternative would be to generate a session token upon user log in, and 
   * testProducts.json
   * testUsers.json
   
+
   All operations are performed over the users.json and products.json files. The testUsers.json and testProducts.json are there to facilitate the testing of the application. After running some tests, you can use the testUsers.json and testProducts.json files to restore the original content of the users.json and products.json files.
   
 

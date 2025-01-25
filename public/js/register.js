@@ -13,7 +13,7 @@ form.onsubmit = async (e) => {
     form.classList.add("was-validated");
   } else {
     data = { email:email.value, password:password.value };
-    const response = await fetch("/api/users", {
+    const response = await fetch("/api/sessions/register", {
       method: "post",
       headers: {
         "content-Type": "application/json",
